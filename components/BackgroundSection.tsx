@@ -2,12 +2,12 @@
 
 import React from "react";
 
-const HEADER_HEIGHT = 64; // Slightly larger for breatheability
+const HEADER_HEIGHT = 150;
 
 const items = [
   {
-    stat: "02",
-    label: "Countries",
+    stat: "01",
+    label: "A bit about me",
     content: (
       <div className="space-y-8">
         <div className="flex gap-4 mb-4">
@@ -15,15 +15,17 @@ const items = [
           <span className="text-4xl">🇬🇧</span>
         </div>
         <p className="text-[28px] leading-[1.4] text-black font-medium font-heading tracking-tight">
-          Born and raised in Lagos, Nigeria, I&apos;ve spent the last few years
-          establishing my life and career in the UK. Currently, I work as an
-          independent consultant helping startups scale their operations and
-          communities.
+          An Executive Operations Partner with a growing portfolio spanning CRM
+          builds, workflow automation, and business systems — who crochets, bakes
+          on a Tuesday with no occasion and no apology, has read all 14 Brandon
+          Sanderson books, and will absolutely argue with you about the Trojan
+          War.
         </p>
         <p className="text-[28px] leading-[1.4] text-black font-medium font-heading tracking-tight">
-          When I&apos;m not building systems for work, you&apos;ll find me
-          documenting new workflows for fun, or designing aesthetic templates
-          for the community.
+          Zeus handed a golden apple situation to a mortal man and walked away.
+          The goddess of discord did exactly what her name said. Nobody should
+          have been surprised. My younger sister is obsessed with me and I have
+          done nothing to discourage this.
         </p>
       </div>
     ),
@@ -59,37 +61,45 @@ const items = [
   },
   {
     stat: "50+",
-    label: "Collaborations",
+    label: "Projects & counting",
     content: (
       <div className="space-y-8">
         <p className="text-[28px] leading-[1.4] text-black font-medium font-heading tracking-tight">
-          I team up with companies, big and small, spanning all sorts of
-          industries, each redefining how we live, work, and interact with the
-          world.
+          My journey to this point has been defined by one thing — a refusal to
+          be boxed in. Every time someone handed me a label that felt too small,
+          I kept moving. Constantly learning. Constantly adapting. Finding the
+          edges of what I know and pushing past them.
         </p>
         <p className="text-[28px] leading-[1.4] text-black font-medium font-heading tracking-tight">
-          Whether it&apos;s helping startups find their voice or keeping
-          established brands relevant, my role is to{" "}
+          I will complain that I do not want to be the chairperson. I will say
+          this with full conviction. And then I will turn around and naturally
+          end up leading the room, coordinating the project, making sure every
+          piece lands exactly where it should.{" "}
           <span className="italic">
-            align every aspect of their presence with who they are
+            The contradiction stopped surprising me a long time ago.
           </span>
-          —through strategy, design, and storytelling.
         </p>
       </div>
     ),
   },
   {
     stat: "10K+",
-    label: "Hours invested",
+    label: "What I'm here for",
     content: (
-      <div className="flex flex-wrap gap-x-8 gap-y-4 text-[22px] text-[#888] font-medium font-heading uppercase tracking-widest">
-        <span>Systems</span>
-        <span>Automation</span>
-        <span>Design</span>
-        <span>Technical</span>
-        <span>Community</span>
-        <span>Workflow</span>
-        <span>Strategy</span>
+      <div className="space-y-8">
+        <p className="text-[28px] leading-[1.4] text-black font-medium font-heading tracking-tight">
+          I build for founders who deserve to have the back end of their business
+          match the vision they are building toward. Nothing falling through.
+          Everything running. Someone watching it so they do not have to.
+        </p>
+        <div className="flex flex-wrap gap-x-8 gap-y-4 pt-4 text-[22px] text-[#888] font-medium font-heading uppercase tracking-widest">
+          <span>CRM Builds</span>
+          <span>Workflow Automation</span>
+          <span>Business Systems</span>
+          <span>Community Ops</span>
+          <span>Founder Support</span>
+          <span>Design Systems</span>
+        </div>
       </div>
     ),
   },
@@ -123,14 +133,14 @@ export default function BackgroundSection() {
               />
 
               {/* The opaque card layer */}
-              <div className="pointer-events-auto bg-[#FAFAFA] border-t border-zinc-200 shadow-[0_-20px_50px_rgba(0,0,0,0.02)] min-h-screen">
+              <div className="pointer-events-auto bg-[#FAFAFA] border-t border-zinc-200">
                 {/* Header Bar */}
-                <div className="h-[64px] flex items-center px-6 sm:px-12 md:px-24 border-b border-zinc-100">
+                <div className="h-[88px] flex items-center px-6 sm:px-12 md:px-24 border-zinc-100">
                   <div className="flex items-center gap-4">
-                    <span className="bg-[#171717] text-white text-[12px] font-bold px-3 py-1 rounded-full tabular-nums">
+                    <span className="bg-[#171717] text-white text-[20px] font-bold px-4 py-1 rounded-full tabular-nums">
                       {item.stat}
                     </span>
-                    <span className="text-[17px] font-semibold tracking-tight text-[#171717] uppercase">
+                    <span className="text-[30px] tracking-tight text-[#171717]">
                       {item.label}
                     </span>
                   </div>
@@ -138,7 +148,7 @@ export default function BackgroundSection() {
 
                 {/* Body Content */}
                 <div className="px-6 sm:px-12 md:px-24 pt-24 pb-32">
-                  <div className="max-w-4xl">
+                  <div className="max-w-3xl ml-auto">
                     {item.content}
                   </div>
                 </div>

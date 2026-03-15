@@ -33,20 +33,21 @@ export default function AboutPage() {
           className="max-w-[90rem]"
         >
           <h1 className="text-[2.8rem] leading-[1.15] font-heading font-medium tracking-tight text-[#171717] sm:text-6xl lg:text-[4rem]">
-            An operations partner with a focus on systems, design and scaling communities; who enjoys{" "}
+            An operations partner who builds{" "}
             <span className="inline-flex items-center gap-1">
               <span className="inline-block w-9 h-9 rounded-lg bg-[#4A1942]/10 p-2 align-middle sm:w-10 sm:h-10">
                 <svg viewBox="0 0 24 24" fill="none" stroke="#4A1942" strokeWidth="2" className="w-full h-full"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
               </span>
-              {" "}efficient workflows,
+              {" "}systems that actually run,
             </span>{" "}
+            crochets things nobody asked for, bakes on a Tuesday with no occasion, has read every{" "}
             <span className="inline-flex items-center gap-1">
               <span className="inline-block w-9 h-9 rounded-lg bg-[#4A1942]/10 p-2 align-middle sm:w-10 sm:h-10">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#4A1942" strokeWidth="2" className="w-full h-full"><circle cx="12" cy="12" r="10" /><path d="M12 8l4 4-4 4M8 12h8" /></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#4A1942" strokeWidth="2" className="w-full h-full"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" /></svg>
               </span>
-              {" "}elegant design,
+              {" "}Brandon Sanderson book,
             </span>{" "}
-            and building the machines that run your vision.
+            and has a younger sister who is obsessed with her — she has done nothing to discourage this.
           </h1>
         </motion.div>
       </section>
