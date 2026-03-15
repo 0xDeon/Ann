@@ -128,7 +128,6 @@ function buildWritingPath(glyphInfos: GlyphInfo[]): string {
 
 export default function Preloader() {
   const [complete, setComplete]       = useState(false);
-  const [mounted, setMounted]         = useState(false);
   const containerRef                  = useRef<HTMLDivElement>(null);
   const [visibleCount, setVisibleCount] = useState(0);
   const [configs, setConfigs]         = useState<PhotoConfig[]>([]);
@@ -200,8 +199,6 @@ export default function Preloader() {
   }, []);
 
   useEffect(() => {
-    setMounted(true);
-
     const newConfigs = images.map((src, index) => ({
       id: src + index,
       src,
@@ -313,7 +310,7 @@ export default function Preloader() {
     return () => { tl.kill(); };
   }, [isExiting]);
 
-  if (complete || !mounted || configs.length === 0) return null;
+  if (complete) return null;
 
   return (
     <div
