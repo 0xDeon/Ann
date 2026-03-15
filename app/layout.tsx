@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Playfair_Display, DM_Sans, Inter, Roboto, Reenie_Beanie } from "next/font/google";
+import { Geist, Geist_Mono, Playfair_Display, DM_Sans, Inter, Roboto, Reenie_Beanie, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import Preloader from "@/components/Preloader";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -45,6 +45,12 @@ const dmSans = DM_Sans({
 });
 
 
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  subsets: ["latin"],
+  weight: ["300", "400", "700", "800"],
+});
+
 export const metadata: Metadata = {
   title: "Ann | Operations Partner",
   description:
@@ -78,7 +84,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${dmSans.variable} ${inter.variable} ${roboto.variable} ${reenieBeanie.variable} antialiased`} suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${dmSans.variable} ${inter.variable} ${roboto.variable} ${reenieBeanie.variable} ${bricolage.variable} antialiased`} suppressHydrationWarning>
         <Preloader />
         <SmoothScroll>
           {children}
