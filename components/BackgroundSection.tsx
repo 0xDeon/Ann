@@ -1,8 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-const HEADER_HEIGHT = 150;
+function useHeaderHeight() {
+  const [height, setHeight] = useState(150);
+  useEffect(() => {
+    const update = () => setHeight(window.innerWidth < 640 ? 60 : 150);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+  return height;
+}
 
 const items = [
   {
@@ -75,9 +84,6 @@ const items = [
           this with full conviction. And then I will turn around and naturally
           end up leading the room, coordinating the project, making sure every
           piece lands exactly where it should.{" "}
-          <span className="italic">
-            The contradiction stopped surprising me a long time ago.
-          </span>
         </p>
       </div>
     ),
@@ -106,6 +112,7 @@ const items = [
 ];
 
 export default function BackgroundSection() {
+  const HEADER_HEIGHT = useHeaderHeight();
   return (
     <section className="relative bg-[#FAFAFA]">
       {/* Intro section */}
@@ -121,9 +128,10 @@ export default function BackgroundSection() {
           return (
             <div
               key={item.label}
-              className="sticky top-0 w-full min-h-screen pointer-events-none"
+              className="sticky top-0 w-full pointer-events-none"
               style={{
                 zIndex: (i + 1) * 10,
+                minHeight: `calc(100vh + ${(items.length - 1) * HEADER_HEIGHT}px)`,
               }}
             >
               {/* The transparent spacer allows stacked headers from previous items to show through */}
@@ -135,19 +143,19 @@ export default function BackgroundSection() {
               {/* The opaque card layer */}
               <div className="pointer-events-auto bg-[#FAFAFA] border-t border-zinc-200">
                 {/* Header Bar */}
-                <div className="h-[88px] flex items-center px-6 sm:px-12 md:px-24 border-zinc-100">
-                  <div className="flex items-center gap-4">
-                    <span className="bg-[#171717] text-white text-[20px] font-bold px-4 py-1 rounded-full tabular-nums">
+                <div className="h-[52px] sm:h-[88px] flex items-center px-6 sm:px-12 md:px-24 border-zinc-100">
+                  <div className="flex items-center gap-2 sm:gap-4">
+                    <span className="bg-[#171717] text-white text-[13px] sm:text-[20px] font-bold px-3 sm:px-4 py-1 rounded-full tabular-nums">
                       {item.stat}
                     </span>
-                    <span className="text-[30px] tracking-tight text-[#171717]">
+                    <span className="text-[18px] sm:text-[30px] tracking-tight text-[#171717]">
                       {item.label}
                     </span>
                   </div>
                 </div>
 
                 {/* Body Content */}
-                <div className="px-6 sm:px-12 md:px-24 pt-24 pb-32">
+                <div className="px-6 sm:px-12 md:px-24 pt-10 pb-16 sm:pt-24 sm:pb-32">
                   <div className="max-w-3xl ml-auto">
                     {item.content}
                   </div>

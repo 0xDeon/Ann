@@ -6,17 +6,17 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const marqueeImages = [
-  { src: "/ann1.jpg", width: 1000, height: 720 },  // wide
-  { src: "/ann5.jpg", width: 900, height: 650 },   // balanced
-  { src: "/ann2.jpg", width: 720, height: 1000 },  // tall
-  { src: "/ann3.jpg", width: 1100, height: 700 },  // wide
-  { src: "/ann8.jpg", width: 680, height: 960 },   // tall
-  { src: "/ann7.jpg", width: 1050, height: 680 },  // wide
-  { src: "/ann13.jpg", width: 880, height: 640 },  // balanced
-  { src: "/ann4.jpg", width: 700, height: 900 },   // tall
-  { src: "/ann6.jpg", width: 950, height: 700 },   // balanced
-  { src: "/ann15.jpg", width: 1080, height: 500 }, // wide
-  { src: "/ann11.jpg", width: 1150, height: 720 }, // wide
+  { src: "/ann1.jpg", w: 1000, h: 720 },  // wide
+  { src: "/ann5.jpg", w: 900, h: 650 },   // balanced
+  { src: "/ann2.jpg", w: 720, h: 1000 },  // tall
+  { src: "/ann3.jpg", w: 1100, h: 700 },  // wide
+  { src: "/ann8.jpg", w: 680, h: 960 },   // tall
+  { src: "/ann7.jpg", w: 1050, h: 680 },  // wide
+  { src: "/ann13.jpg", w: 880, h: 640 },  // balanced
+  { src: "/ann4.jpg", w: 700, h: 900 },   // tall
+  { src: "/ann6.jpg", w: 950, h: 700 },   // balanced
+  { src: "/ann15.jpg", w: 1080, h: 500 }, // wide
+  { src: "/ann11.jpg", w: 1150, h: 720 }, // wide
 ];
 
 export default function AboutPage() {
@@ -54,12 +54,12 @@ export default function AboutPage() {
 
       {/* Infinite Scrolling Photo Strip */}
       <section className="relative w-full overflow-hidden py-12">
-        <div className="flex w-max animate-marquee items-start gap-14">
+        <div className="flex w-max animate-marquee items-start gap-6 origin-left scale-[0.35] sm:scale-[0.5] md:scale-75 lg:scale-100 lg:gap-14">
           {[...marqueeImages, ...marqueeImages].map((img, i) => (
             <div
               key={i}
               className="relative flex-shrink-0 overflow-hidden"
-              style={{ width: img.width, height: img.height }}
+              style={{ width: img.w, height: img.h }}
             >
               <Image
                 src={img.src}
