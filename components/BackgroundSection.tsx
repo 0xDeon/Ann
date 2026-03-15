@@ -106,49 +106,34 @@ export default function BackgroundSection() {
 
       <div className="relative">
         {items.map((item, i) => (
-          <div key={item.label}>
-            {/* Sticky header — sits on its own z-layer ABOVE all content */}
-            <div
-              className="sticky bg-[#FAFAFA] border-t border-b border-zinc-300"
-              style={{
-                top: i * HEADER_HEIGHT,
-                zIndex: 100 + i,
-              }}
-            >
-              <div className="px-6 sm:px-12 md:px-24 py-4">
-                <div className="flex items-center gap-3">
-                  <span className="bg-[#171717] text-white text-[13px] font-bold px-3 py-1 rounded-full tabular-nums">
-                    {item.stat}
-                  </span>
-                  <span className="text-[19px] font-medium tracking-tight text-[#171717]">
-                    {item.label}
-                  </span>
-                </div>
+          <div
+            key={item.label}
+            className="sticky min-h-screen bg-[#FAFAFA]"
+            style={{
+              top: i * HEADER_HEIGHT,
+              zIndex: i + 1,
+            }}
+          >
+            {/* Header bar */}
+            <div className="border-t border-b border-zinc-300 px-6 sm:px-12 md:px-24 py-4">
+              <div className="flex items-center gap-3">
+                <span className="bg-[#171717] text-white text-[13px] font-bold px-3 py-1 rounded-full tabular-nums">
+                  {item.stat}
+                </span>
+                <span className="text-[19px] font-medium tracking-tight text-[#171717]">
+                  {item.label}
+                </span>
               </div>
             </div>
 
-            {/* Content block — separate sticky element, lower z-index so next header covers it */}
-            <div
-              className="sticky bg-[#FAFAFA]"
-              style={{
-                top: (i + 1) * HEADER_HEIGHT,
-                zIndex: 50 + i,
-              }}
-            >
-              <div className="px-6 sm:px-12 md:px-24 pt-16 pb-24 bg-[#FAFAFA]">
-                <div className="max-w-3xl ml-auto">
-                  {item.content}
-                </div>
+            {/* Content area */}
+            <div className="px-6 sm:px-12 md:px-24 pt-16 pb-24 bg-[#FAFAFA]">
+              <div className="max-w-3xl ml-auto">
+                {item.content}
               </div>
             </div>
-
-            {/* Scroll spacer */}
-            <div className="h-[60vh]" />
           </div>
         ))}
-
-        {/* Extra spacer at end so last item can fully scroll into place */}
-        <div className="h-[40vh]" />
       </div>
     </section>
   );
