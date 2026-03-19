@@ -61,7 +61,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="mb-10 text-5xl  leading-[1.1] tracking-tight text-[#171717] sm:text-6xl md:text-7xl lg:text-8xl font-heading"
         >
-          I help founders turn <span>plans</span> into things that actually <span>happen.</span>
+          I help <span>founders</span> turn <span>plans</span> into things that actually <span>happen.</span>
         </motion.h1>
 
         {/* Sub-headline / Context */}

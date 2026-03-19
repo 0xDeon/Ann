@@ -98,7 +98,7 @@ const items = [
           match the vision they are building toward. Nothing falling through.
           Everything running. Someone watching it so they do not have to.
         </p>
-        <div className="flex flex-wrap gap-x-8 gap-y-4 pt-4 text-[22px] text-[#888] font-medium font-heading uppercase tracking-widest">
+        <div className="flex flex-wrap gap-x-8 gap-y-4 pt-4 text-[22px] tracking-wide">
           <span>CRM Builds</span>
           <span>Workflow Automation</span>
           <span>Business Systems</span>
@@ -111,7 +111,7 @@ const items = [
   },
 ];
 
-export default function BackgroundSection() {
+export default function BackgroundSection({ children }: { children?: React.ReactNode }) {
   const HEADER_HEIGHT = useHeaderHeight();
   return (
     <section className="relative bg-[#FAFAFA]">
@@ -145,10 +145,10 @@ export default function BackgroundSection() {
                 {/* Header Bar */}
                 <div className="h-[52px] sm:h-[88px] flex items-center px-6 sm:px-12 md:px-24 border-zinc-100">
                   <div className="flex items-center gap-2 sm:gap-4">
-                    <span className="bg-[#171717] text-white text-[13px] sm:text-[20px] font-bold px-3 sm:px-4 py-1 rounded-full tabular-nums">
+                    <span className="bg-[#171717] text-white text-[13px] sm:text-[20px] font-bold font-heading px-3 sm:px-4 py-1 rounded-full tabular-nums">
                       {item.stat}
                     </span>
-                    <span className="text-[18px] sm:text-[30px] tracking-tight text-[#171717]">
+                    <span className="text-[18px] sm:text-[30px] tracking-tight text-[#171717] font-heading">
                       {item.label}
                     </span>
                   </div>
@@ -165,8 +165,12 @@ export default function BackgroundSection() {
           );
         })}
 
-        {/* Spacer so last sticky item has scroll room and everything exits together */}
-        <div className="h-screen" />
+        {/* Next section slides up to collapse the last item */}
+        {children && (
+          <div className="relative bg-white" style={{ zIndex: (items.length + 1) * 10 }}>
+            {children}
+          </div>
+        )}
       </div>
     </section>
   );
