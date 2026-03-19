@@ -130,7 +130,16 @@ export default function Preloader() {
   const [complete, setComplete]       = useState(false);
   const containerRef                  = useRef<HTMLDivElement>(null);
   const [visibleCount, setVisibleCount] = useState(0);
-  const [configs, setConfigs]         = useState<PhotoConfig[]>([]);
+  const [configs] = useState<PhotoConfig[]>(() => images.map((src, index) => ({
+    id: src + index,
+    src,
+    word: words[index],
+    initialRotate: Math.random() * 120 - 60,
+    targetRotate:  Math.random() * 40  - 20,
+    initialX:      Math.random() * 600 - 300,
+    offsetX:       Math.random() * 60  - 30,
+    offsetY:       Math.random() * 60  - 30,
+  })));
   const [isExiting, setIsExiting]     = useState(false);
   const [contentHidden, setContentHidden] = useState(false);
   const [showSignature, setShowSignature] = useState(false);
@@ -199,18 +208,6 @@ export default function Preloader() {
   }, []);
 
   useEffect(() => {
-    const newConfigs = images.map((src, index) => ({
-      id: src + index,
-      src,
-      word: words[index],
-      initialRotate: Math.random() * 120 - 60,
-      targetRotate:  Math.random() * 40  - 20,
-      initialX:      Math.random() * 600 - 300,
-      offsetX:       Math.random() * 60  - 30,
-      offsetY:       Math.random() * 60  - 30,
-    }));
-    setConfigs(newConfigs);
-
     const tl = gsap.timeline();
 
     images.forEach((_, index) => {
