@@ -2,6 +2,8 @@
 
 import Navbar from "@/components/Navbar";
 import BackgroundSection from "@/components/BackgroundSection";
+import InterestsSection from "@/components/InterestsSection";
+import ContactSection from "@/components/ContactSection";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -72,9 +74,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Background Section — Scroll-collapsing accordion */}
-      <BackgroundSection />
+      {/* Background Section — Scroll-collapsing accordion, with Interests nested inside */}
+      <BackgroundSection>
+        <InterestsSection />
+      </BackgroundSection>
 
+      {/* Contact Section */}
+      <ContactSection />
 
       {/* Specialties remains but integrated or removed? I'll keep it as a secondary detail after the 'Background' block */}
       {/* <section className="px-6 py-28 sm:px-12 md:px-24">
