@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 
-type Category = "All" | "Operations" | "Design" | "Technical Writing" | "Community Operations & Mgt" | "Volunteer";
+type Category = "All" | "Operations" | "Design" | "Technical Writing" | "Community Operations & Mgt" | "Volunteer" | "Videos";
 
 interface Project {
   title: string;
@@ -98,6 +98,36 @@ const projects: Project[] = [
     tags: ["Strategic Growth", "Events"],
     link: "#",
   },
+  {
+    title: "Project Breakdown",
+    year: "2024",
+    description: "A detailed walkthrough of my operational design process and system architecture for high-growth teams.",
+    categories: ["Videos"],
+    aspect: "aspect-video",
+    image: "https://img.youtube.com/vi/lXcdeRIbA18/maxresdefault.jpg",
+    tags: ["Operations", "Tutorial"],
+    link: "https://youtu.be/lXcdeRIbA18?si=ZmZa1rvfeSTfn3kH",
+  },
+  {
+    title: "System Thinking",
+    year: "2024",
+    description: "Exploring the fundamentals of building scalable systems for creative businesses and founders.",
+    categories: ["Videos"],
+    aspect: "aspect-video",
+    image: "https://img.youtube.com/vi/QoMcUnWa_Co/maxresdefault.jpg",
+    tags: ["Systems", "Strategy"],
+    link: "https://youtu.be/QoMcUnWa_Co?si=pnjfoISTxhybitOb",
+  },
+  {
+    title: "The Ann Method",
+    year: "2024",
+    description: "My personal approach to managing complex community operational pipelines without friction.",
+    categories: ["Videos"],
+    aspect: "aspect-video",
+    image: "https://img.youtube.com/vi/PiBYujKfv_Q/maxresdefault.jpg",
+    tags: ["Community", "Ops"],
+    link: "https://youtu.be/PiBYujKfv_Q?si=PnxexeYQzY_Ykrkd",
+  },
 ];
 
 const categories: { label: Category; count: number }[] = [
@@ -121,6 +151,10 @@ const categories: { label: Category; count: number }[] = [
   {
     label: "Volunteer",
     count: projects.filter((p) => p.categories.includes("Volunteer")).length,
+  },
+  {
+    label: "Videos",
+    count: projects.filter((p) => p.categories.includes("Videos")).length,
   },
 ];
 
@@ -205,15 +239,24 @@ export default function WorkSection() {
                     transition={{ duration: 0.5, ease: [0.215, 0.61, 0.355, 1] }}
                     className="group flex flex-col"
                   >
-                    {/* Placeholder Container */}
-                    <div
-                      className={`relative mb-6 ${project.aspect} w-full overflow-hidden rounded-2xl bg-[#F8F8F8] shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:bg-zinc-200`}
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`relative mb-6 ${project.aspect} w-full overflow-hidden rounded-2xl bg-[#F8F8F8] shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:bg-zinc-200 block`}
                     >
-                      {/* Sub-label for images manually added later */}
-                      <div className="absolute inset-0 flex items-center justify-center text-xs font-semibold uppercase tracking-widest text-zinc-300 opacity-0 transition-opacity group-hover:opacity-100">
-                        Drop Image Here
-                      </div>
-                    </div>
+                      {project.image ? (
+                        <img 
+                          src={project.image} 
+                          alt={project.title} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center text-xs font-semibold uppercase tracking-widest text-zinc-300 opacity-0 transition-opacity group-hover:opacity-100">
+                          Drop Image Here
+                        </div>
+                      )}
+                    </a>
 
                     {/* Content Block */}
                     <div className="flex flex-col gap-3">
