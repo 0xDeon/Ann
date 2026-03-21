@@ -41,7 +41,7 @@ export default function InterestsSection() {
       </motion.p>
 
       {/* Polaroid carousel */}
-      <div className="relative flex items-center justify-center min-h-[700px] sm:min-h-[1000px] lg:min-h-[1200px]">
+      <div className="relative flex items-center justify-center min-h-[500px] sm:min-h-[650px] lg:min-h-[750px]">
         {/* Left arrow */}
         <button
           onClick={prev}
@@ -53,7 +53,7 @@ export default function InterestsSection() {
         </button>
 
         {/* Cards */}
-        <div className="relative w-full max-w-7xl h-[680px] sm:h-[950px] lg:h-[1150px] flex items-center justify-center">
+        <div className="relative w-full max-w-7xl h-[480px] sm:h-[620px] lg:h-[500px] flex items-center justify-center">
           {interests.map((item, i) => {
             const isActive = i === active;
             // Fixed position: left (-1), center (0), right (1)
@@ -63,7 +63,7 @@ export default function InterestsSection() {
               <motion.div
                 key={item.label}
                 animate={{
-                  x: position * 700,
+                  x: position * 520,
                   scale: isActive ? 1 : 0.75,
                   rotate: isActive ? 0 : item.rotate,
                   opacity: isActive ? 1 : 0.45,
@@ -83,13 +83,13 @@ export default function InterestsSection() {
                 <div
                   className="bg-white rounded-sm"
                   style={{
-                    padding: "20px 20px 90px 20px",
-                    width: 700,
+                    padding: "16px 16px 70px 16px",
+                    width: 480,
                     boxShadow: "0 12px 60px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06)",
                   }}
                 >
                   {/* Image area */}
-                  <div className="relative w-full aspect-[4/3] bg-[#F5F5F5] rounded-sm overflow-hidden">
+                  <div className="relative w-full aspect-square bg-[#F5F5F5] rounded-sm overflow-hidden">
                     <Image
                       src={item.src}
                       alt={item.label}
