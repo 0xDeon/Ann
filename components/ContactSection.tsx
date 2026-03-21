@@ -65,7 +65,7 @@ export default function ContactSection() {
       {/* Footer */}
       <div className="px-6 sm:px-12 md:px-24 pb-12 pt-10 border-t border-zinc-200">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-6 max-w-7xl">
-          <p className="text-sm text-[#999] font-heading">&copy; Ann Anidumaka, 2025.</p>
+          <p className="text-sm text-[#999] font-heading">&copy; Ann Anidumaka, 2026.</p>
 
           <div className="flex items-center gap-8">
             {["LinkedIn", "X", "Behance"].map((name) => (
