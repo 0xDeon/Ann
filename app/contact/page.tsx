@@ -49,7 +49,7 @@ function InteractiveContactLink({
             initial={{ opacity: 0, x: -10, rotate: -8 }}
             animate={{ opacity: 1, x: 0, rotate: -3 }}
             exit={{ opacity: 0, x: 5, rotate: 2 }}
-            className="absolute left-full ml-4 whitespace-nowrap font-handwriting text-3xl text-[#4A1942] pointer-events-none select-none z-20"
+            className="absolute left-[95%] -top-4 whitespace-nowrap font-handwriting text-4xl text-[#4A1942] pointer-events-none select-none z-20"
           >
             {copied ? "Copied!" : note}
           </motion.span>
@@ -79,7 +79,7 @@ export default function ContactPage() {
     <main className="min-h-screen bg-white text-[#171717] font-sans">
       <Navbar />
 
-      <section className="px-6 py-20 sm:px-12 md:px-16 lg:px-24 max-w-[1440px] mx-auto overflow-hidden">
+      <section className="px-6 py-20 sm:px-12 md:px-16 lg:px-24 max-w-[1440px] mx-auto">
         {/* Header */}
         <div className="mb-20">
           <motion.h1
