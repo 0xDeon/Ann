@@ -236,8 +236,8 @@ export default function Preloader() {
     tl.to({}, { duration: 0.5 });
     tl.call(() => setShowSignature(true));
 
-    // Writing animation duration (6 s) + 1 s hold = 7 s total
-    tl.to({}, { duration: 7.0 });
+    // Writing animation duration (3.5 s) + 1 s hold = 4.5 s total
+    tl.to({}, { duration: 4.5 });
     tl.call(() => setIsExiting(true));
 
     return () => { tl.kill(); };
@@ -258,7 +258,7 @@ export default function Preloader() {
     const tl = gsap.timeline();
     tl.to(path, {
       strokeDashoffset: 0,
-      duration: 6,
+      duration: 3.5,
       ease: "sine.inOut",
     });
 
