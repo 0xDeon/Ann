@@ -126,20 +126,35 @@ function buildWritingPath(glyphInfos: GlyphInfo[]): string {
   return catmullRomToBezier(points);
 }
 
+// A simple persistent flag outside the component to track if the preloader has already 
+// finished playing during the current browser session. This ensures that client-side 
+// navigations between pages don't trigger the preloader again.
+let hasPlayedOnce = false;
+
 export default function Preloader() {
-  const [complete, setComplete]       = useState(false);
+  const [complete, setComplete]       = useState(hasPlayedOnce);
   const containerRef                  = useRef<HTMLDivElement>(null);
   const [visibleCount, setVisibleCount] = useState(0);
-  const [configs] = useState<PhotoConfig[]>(() => images.map((src, index) => ({
-    id: src + index,
-    src,
-    word: words[index],
-    initialRotate: Math.random() * 120 - 60,
-    targetRotate:  Math.random() * 40  - 20,
-    initialX:      Math.random() * 600 - 300,
-    offsetX:       Math.random() * 60  - 30,
-    offsetY:       Math.random() * 60  - 30,
-  })));
+  const [configs] = useState<PhotoConfig[]>(() => images.map((src, index) => {
+    // We use deterministic pseudo-random values based on the index to avoid hydration
+    // mismatches between server and client renders, while still having visual variety.
+    const seed = index + 1;
+    const pseudoRandom = (n: number) => {
+      const x = Math.sin(n) * 10000;
+      return x - Math.floor(x);
+    };
+
+    return {
+      id: src + index,
+      src,
+      word: words[index],
+      initialRotate: pseudoRandom(seed * 1) * 120 - 60,
+      targetRotate:  pseudoRandom(seed * 2) * 40  - 20,
+      initialX:      pseudoRandom(seed * 3) * 600 - 300,
+      offsetX:       pseudoRandom(seed * 4) * 60  - 30,
+      offsetY:       pseudoRandom(seed * 5) * 60  - 30,
+    };
+  }));
   const [isExiting, setIsExiting]     = useState(false);
   const [contentHidden, setContentHidden] = useState(false);
   const [showSignature, setShowSignature] = useState(false);
@@ -208,6 +223,7 @@ export default function Preloader() {
   }, []);
 
   useEffect(() => {
+    if (complete) return;
     const tl = gsap.timeline();
 
     images.forEach((_, index) => {
@@ -229,7 +245,7 @@ export default function Preloader() {
 
   // ── Animate the mask stroke (strokeDashoffset = DrawSVG equivalent) ────────
   useEffect(() => {
-    if (!showSignature || !sigData || !maskPathRef.current) return;
+    if (complete || !showSignature || !sigData || !maskPathRef.current) return;
 
     const path   = maskPathRef.current;
     const length = path.getTotalLength();
@@ -251,7 +267,7 @@ export default function Preloader() {
 
   // ── Pixel grid exit transition ──────────────────────────────────────────────
   useEffect(() => {
-    if (!isExiting || !pixelGridRef.current) return;
+    if (complete || !isExiting || !pixelGridRef.current) return;
 
     const grid = pixelGridRef.current;
     grid.innerHTML = "";
@@ -301,7 +317,10 @@ export default function Preloader() {
       display: "none",
       duration: 0,
       stagger: { each: staggerDuration, from: "random" },
-      onComplete: () => setComplete(true),
+      onComplete: () => {
+        setComplete(true);
+        hasPlayedOnce = true;
+      },
     });
 
     return () => { tl.kill(); };
