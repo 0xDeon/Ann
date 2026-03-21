@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 
-type Category = "All" | "Operations" | "Design" | "Technical Writing" | "Community Operations & Mgt";
+type Category = "All" | "Operations" | "Design" | "Technical Writing" | "Community Operations & Mgt" | "Volunteer";
 
 interface Project {
   title: string;
@@ -87,6 +87,17 @@ const projects: Project[] = [
     tags: ["Strategic Growth", "Events"],
     link: "#",
   },
+  {
+    title: "Feed a Child",
+    year: "2024",
+    description:
+      "An NGO created initiative created to feeding children in poor eenvironments",
+    categories: ["Volunteer"],
+    aspect: "aspect-[3/2]",
+    image: "",
+    tags: ["Strategic Growth", "Events"],
+    link: "#",
+  },
 ];
 
 const categories: { label: Category; count: number }[] = [
@@ -106,6 +117,10 @@ const categories: { label: Category; count: number }[] = [
   {
     label: "Community Operations & Mgt",
     count: projects.filter((p) => p.categories.includes("Community Operations & Mgt")).length,
+  },
+  {
+    label: "Volunteer",
+    count: projects.filter((p) => p.categories.includes("Volunteer")).length,
   },
 ];
 

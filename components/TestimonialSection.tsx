@@ -8,9 +8,11 @@ const PIXEL_SIZE = 48;
 interface Testimonial {
   brand: string;
   logo?: string;
-  quote: string;
-  author: string;
-  role: string;
+  quote?: string;
+  author?: string;
+  role?: string;
+  isImage?: boolean;
+  image?: string;
 }
 
 const testimonials: Testimonial[] = [
@@ -20,6 +22,11 @@ const testimonials: Testimonial[] = [
       "Ann doesn't just manage operations — she architects them. She turned our scattered processes into a system that actually worked.",
     author: "David O.",
     role: "Founder, Startup Lab",
+  },
+  {
+    brand: "Ann Photo 1",
+    isImage: true,
+    image: "/ann1.jpg",
   },
   {
     brand: "Growth Circle",
@@ -34,6 +41,11 @@ const testimonials: Testimonial[] = [
       "She scaled our community ops from 200 to 5,000 members without anything falling through. Still not sure how she did it.",
     author: "Chidi E.",
     role: "Lead, DevDAO Africa",
+  },
+  {
+    brand: "Ann Photo 2",
+    isImage: true,
+    image: "/ann7.jpg",
   },
   {
     brand: "MAZERANCE",
@@ -55,6 +67,11 @@ const testimonials: Testimonial[] = [
       "Precise, proactive, and somehow always three steps ahead. Ann is the operations partner every founder needs but rarely finds.",
     author: "Mark S.",
     role: "Co-founder, iorad",
+  },
+  {
+    brand: "Ann Photo 3",
+    isImage: true,
+    image: "/ann10.jpg",
   },
 ];
 
@@ -103,17 +120,14 @@ function PixelCard({ testimonial }: { testimonial: Testimonial }) {
     const tl = gsap.timeline();
     tlRef.current = tl;
 
-    // Phase 1: pixels appear, covering the brand face
     tl.to(pixels, {
       display: "block",
       duration: 0,
       stagger: { each: stagger, from: "random" },
     });
 
-    // Phase 2: swap face while fully covered
     tl.call(() => setShowBack(true));
 
-    // Phase 3: pixels disappear, revealing the testimonial
     tl.to(pixels, {
       display: "none",
       duration: 0,
@@ -122,57 +136,68 @@ function PixelCard({ testimonial }: { testimonial: Testimonial }) {
   }, [buildPixels]);
 
   const handleMouseLeave = useCallback(() => {
-    // Immediately kill any running animation and snap back to front face
     if (tlRef.current) {
       tlRef.current.kill();
       tlRef.current = null;
     }
 
-    // Hide all pixels instantly
     const grid = pixelGridRef.current;
     if (grid) {
       const pixels = grid.querySelectorAll<HTMLDivElement>("div");
       pixels.forEach((p) => (p.style.display = "none"));
     }
 
-    // Snap back to brand face
     setShowBack(false);
   }, []);
 
   return (
     <div
       ref={cardRef}
-      className="relative isolate aspect-[4/3] cursor-pointer overflow-hidden"
+      className="relative isolate aspect-[4/3] cursor-pointer overflow-hidden group"
       style={{ backgroundColor: "#F5F5F5" }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Front face — brand/logo (always rendered, toggled via visibility) */}
+      {/* Front face — brand/logo or blank for images */}
       <div
         className="absolute inset-0 flex items-center justify-center p-8 bg-[#F5F5F5]"
         style={{ visibility: showBack ? "hidden" : "visible", zIndex: 1 }}
       >
-        <span className="text-[28px] sm:text-[36px] font-heading font-bold text-[#171717] tracking-tight">
-          {testimonial.brand}
-        </span>
+        {!testimonial.isImage && (
+          <span className="text-[28px] sm:text-[36px] font-heading font-bold text-[#171717] tracking-tight">
+            {testimonial.brand}
+          </span>
+        )}
       </div>
 
-      {/* Back face — testimonial text (always rendered, toggled via visibility) */}
+      {/* Back face — testimonial text OR the image */}
       <div
-        className="absolute inset-0 flex flex-col justify-between p-6 sm:p-8 bg-[#F5F5F5]"
+        className="absolute inset-0 flex flex-col justify-between bg-[#F5F5F5] overflow-hidden"
         style={{ visibility: showBack ? "visible" : "hidden", zIndex: 2 }}
       >
-        <p className="text-[15px] sm:text-[17px] leading-[1.5] font-heading font-light tracking-tight text-[#171717]">
-          &ldquo;{testimonial.quote}&rdquo;
-        </p>
-        <div className="mt-4">
-          <p className="text-[14px] sm:text-[16px] font-heading font-medium text-[#171717]">
-            {testimonial.author}
-          </p>
-          <p className="text-[12px] sm:text-[13px] font-heading text-[#999]">
-            {testimonial.role}
-          </p>
-        </div>
+        {testimonial.isImage ? (
+          <img 
+            src={testimonial.image} 
+            alt="Ann" 
+            className="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-110" 
+          />
+        ) : (
+          <div className="flex flex-col justify-between h-full p-6 sm:p-8">
+            {testimonial.quote && (
+              <p className="text-[15px] sm:text-[17px] leading-[1.5] font-heading font-light tracking-tight text-[#171717]">
+                &ldquo;{testimonial.quote}&rdquo;
+              </p>
+            )}
+            <div className="mt-4">
+              <p className="text-[14px] sm:text-[16px] font-heading font-medium text-[#171717]">
+                {testimonial.author}
+              </p>
+              <p className="text-[12px] sm:text-[13px] font-heading text-[#999]">
+                {testimonial.role}
+              </p>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Pixel grid overlay */}
