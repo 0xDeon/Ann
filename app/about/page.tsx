@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import BackgroundSection from "@/components/BackgroundSection";
 import InterestsSection from "@/components/InterestsSection";
@@ -8,20 +9,22 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const marqueeImages = [
-  { src: "/ann1.jpg", w: 1000, h: 720 },  // wide
-  { src: "/ann5.jpg", w: 900, h: 650 },   // balanced
-  { src: "/ann2.jpg", w: 720, h: 1000 },  // tall
-  { src: "/ann3.jpg", w: 1100, h: 700 },  // wide
-  { src: "/ann8.jpg", w: 680, h: 960 },   // tall
-  { src: "/ann7.jpg", w: 1050, h: 680 },  // wide
-  { src: "/ann13.jpg", w: 880, h: 640 },  // balanced
-  { src: "/ann4.jpg", w: 700, h: 900 },   // tall
-  { src: "/ann6.jpg", w: 950, h: 700 },   // balanced
-  { src: "/ann15.jpg", w: 1080, h: 500 }, // wide
-  { src: "/ann11.jpg", w: 1150, h: 720 }, // wide
+  { src: "/ann1.jpg", w: 1000, h: 720, caption: "Morning light, tea first. The inbox can wait three more minutes." },
+  { src: "/ann5.jpg", w: 900, h: 650, caption: "Mid-workshop build. Probably fixing somebody's onboarding flow in her head." },
+  { src: "/ann2.jpg", w: 720, h: 1000, caption: "That look she gets when she's already rewriting your email sequence." },
+  { src: "/ann3.jpg", w: 1100, h: 700, caption: "Sunday bake. No occasion. Flour on everything by noon." },
+  { src: "/ann8.jpg", w: 680, h: 960, caption: "Crocheting something nobody asked for. She will give it to you anyway." },
+  { src: "/ann7.jpg", w: 1050, h: 680, caption: "Between flows. A Brandon Sanderson paperback within arm's reach." },
+  { src: "/ann13.jpg", w: 880, h: 640, caption: "Coffee-shop office day. The best Dubsado builds happen here." },
+  { src: "/ann4.jpg", w: 700, h: 900, caption: "Tolerating the camera. Back to work in ten seconds." },
+  { src: "/ann6.jpg", w: 950, h: 700, caption: "Golden hour. Her sister took this and refuses to stop talking about it." },
+  { src: "/ann15.jpg", w: 1080, h: 500, caption: "Wandering between two ideas. Both of them will get built." },
+  { src: "/ann11.jpg", w: 1150, h: 720, caption: "The 'it's done, you can stop worrying' face." },
 ];
 
 export default function AboutPage() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
     <main className="relative min-h-screen w-full bg-white selection:bg-[#4A1942] selection:text-white">
       <Navbar />
@@ -56,21 +59,44 @@ export default function AboutPage() {
 
       {/* Infinite Scrolling Photo Strip */}
       <section className="relative w-full overflow-hidden py-12">
-        <div className="flex w-max animate-marquee items-start gap-6 origin-left scale-[0.35] sm:scale-[0.5] md:scale-75 lg:scale-100 lg:gap-14">
-          {[...marqueeImages, ...marqueeImages].map((img, i) => (
-            <div
-              key={i}
-              className="relative flex-shrink-0 overflow-hidden"
-              style={{ width: img.w, height: img.h }}
-            >
-              <Image
-                src={img.src}
-                alt={`Ann ${(i % marqueeImages.length) + 1}`}
-                fill
-                className="object-cover object-top"
-              />
-            </div>
-          ))}
+        <div
+          className="flex w-max animate-marquee items-start gap-6 origin-left scale-[0.35] sm:scale-[0.5] md:scale-75 lg:scale-100 lg:gap-14"
+          style={{ animationPlayState: hoveredIndex !== null ? "paused" : "running" }}
+        >
+          {[...marqueeImages, ...marqueeImages].map((img, i) => {
+            const baseIndex = i % marqueeImages.length;
+            const isHovered = hoveredIndex === i;
+            return (
+              <div
+                key={i}
+                className="relative flex-shrink-0"
+                style={{ width: img.w }}
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <div
+                  className="relative overflow-hidden"
+                  style={{ width: img.w, height: img.h }}
+                >
+                  <Image
+                    src={img.src}
+                    alt={`Ann ${baseIndex + 1}`}
+                    fill
+                    className="object-cover object-top"
+                  />
+                </div>
+                <div className="mt-4 h-16 overflow-hidden">
+                  <p
+                    className={`font-handwriting text-[2.2rem] leading-[1.1] text-[#171717] transition-all duration-500 ease-out ${
+                      isHovered ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+                    }`}
+                  >
+                    {img.caption}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
 

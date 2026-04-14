@@ -1,8 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+
+const LiquidEther = dynamic(() => import("./LiquidEther"), { ssr: false });
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -15,11 +18,28 @@ export default function Hero() {
   const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      className="relative flex min-h-screen w-full flex-col items-start justify-center px-6 pt-24 pb-12 sm:px-12 md:px-24"
+      className="relative isolate flex min-h-screen w-full flex-col items-start justify-center overflow-hidden px-6 pt-24 pb-12 sm:px-12 md:px-24"
     >
-      <div className="max-w-7xl">
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <LiquidEther
+          colors={["#4A1942", "#B19EEF", "#FF9FFC"]}
+          mouseForce={18}
+          cursorSize={100}
+          iterationsPoisson={12}
+          iterationsViscous={0}
+          resolution={0.35}
+          autoDemo
+          autoSpeed={0.4}
+          autoIntensity={2}
+          takeoverDuration={0.25}
+          autoResumeDelay={2500}
+          autoRampDuration={0.6}
+        />
+      </div>
+
+      <div className="relative z-10 max-w-7xl">
         {/* Greeting + Small Image Identifier */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -61,7 +81,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="mb-10 text-5xl  leading-[1.1] tracking-tight text-[#171717] sm:text-6xl md:text-7xl lg:text-8xl font-heading"
         >
-          I help <span>founders</span> turn <span>plans</span> into things that actually <span>happen.</span>
+          I help <span>founders</span> turn <span>plans</span> into products that actually <span>scale</span>
         </motion.h1>
 
         {/* Sub-headline / Context */}
@@ -71,7 +91,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           className="flex flex-col gap-8 md:flex-row md:items-end md:gap-16"
         >
-          <p className="max-w-lg text-lg leading-relaxed text-[#444444] font-sans md:text-xl">
+          <p className="max-w-xl text-lg leading-relaxed text-[#444444] font-sans md:text-xl">
             Operations support and systems setup for founders who are growing faster than their backend. I build the machines that run your vision.
           </p>
 
@@ -90,8 +110,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Decorative background element inspired by Blush White */}
-      <div className="absolute right-0 top-1/2 -z-10 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-[#F9F0F7] blur-[120px] opacity-60" />
     </section>
   );
 }

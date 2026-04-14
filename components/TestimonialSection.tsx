@@ -17,11 +17,11 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
   {
-    brand: "Startup Lab",
+    brand: "Siren Studios",
     quote:
-      "Ann doesn't just manage operations — she architects them. She turned our scattered processes into a system that actually worked.",
-    author: "David O.",
-    role: "Founder, Startup Lab",
+      "The workshop had been planned for months and kept not happening. Ann came in, held me to my own plan, and the thing finally launched — emails out, promotions live, booked.",
+    author: "James",
+    role: "Founder, Siren Studios",
   },
   {
     brand: "Ann Photo 1",
@@ -29,18 +29,18 @@ const testimonials: Testimonial[] = [
     image: "/ann1.jpg",
   },
   {
-    brand: "Growth Circle",
+    brand: "Heritage Custom Cakes",
     quote:
-      "We handed her chaos and she handed us back a running machine. Genuinely one of the most dependable people I've worked with.",
-    author: "Temi A.",
-    role: "CEO, Growth Circle",
+      "Ann built the entire Dubsado workspace — workflows, proposals, contracts, canned emails. I don't touch a single thing between a cake inquiry and a confirmed booking anymore.",
+    author: "Clara",
+    role: "Owner, Heritage Custom Cakes",
   },
   {
-    brand: "DevDAO Africa",
+    brand: "Persona Coaching",
     quote:
-      "She scaled our community ops from 200 to 5,000 members without anything falling through. Still not sure how she did it.",
-    author: "Chidi E.",
-    role: "Lead, DevDAO Africa",
+      "I thought we needed one workflow. Ann tested it, came back and said we actually needed three — onboarding, offboarding, and per-session. She was right, and she built all of them.",
+    author: "Coaching Client",
+    role: "Persona Coaching",
   },
   {
     brand: "Ann Photo 2",
@@ -48,25 +48,25 @@ const testimonials: Testimonial[] = [
     image: "/ann7.jpg",
   },
   {
-    brand: "MAZERANCE",
+    brand: "The Ops Desk",
     quote:
-      "Ann has this rare ability to see the full picture and zoom into the details at the same time. Our workflow has never been tighter.",
-    author: "Kola M.",
-    role: "Creative Director, Mazerance",
+      "Welcome sequence, guide delivery, the honest follow-up email — Ann wrote the copy, built it in HubSpot, and shipped it in my voice. No daily inbox flooding, just emails that earn the open.",
+    author: "Subscriber",
+    role: "The Ops Desk Newsletter",
   },
   {
-    brand: "ApeX Ventures",
+    brand: "Systems Build",
     quote:
-      "She built our entire CRM from scratch and automated half our pipeline. The ROI was immediate and honestly kind of scary.",
-    author: "Nneka F.",
-    role: "Operations, ApeX Ventures",
+      "She reads between the lines — sees the operational gap before you name it — and stays until the thing is done, not until the hour is up.",
+    author: "Founder Feedback",
+    role: "Operations Partnership",
   },
   {
-    brand: "iorad",
+    brand: "Email Campaigns",
     quote:
-      "Precise, proactive, and somehow always three steps ahead. Ann is the operations partner every founder needs but rarely finds.",
-    author: "Mark S.",
-    role: "Co-founder, iorad",
+      "Two HTML emails, built from scratch, live the same week. She brought her own tool knowledge to it — I didn't have to explain what AWeber was.",
+    author: "Creative Studio",
+    role: "Campaign Build",
   },
   {
     brand: "Ann Photo 3",

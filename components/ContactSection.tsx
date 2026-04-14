@@ -2,9 +2,10 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
+import MagneticButton from "./MagneticButton";
 
 export default function ContactSection() {
-  const sectionRef = useRef<HTMLAnchorElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0.5);
   const mouseY = useMotionValue(0.5);
 
@@ -29,13 +30,12 @@ export default function ContactSection() {
 
   return (
     <section className="relative bg-white">
-      {/* Main CTA area — the entire block is the button */}
-      <a
-        href="mailto:hello@annanidumaka.com"
+      {/* Main CTA area */}
+      <div
         ref={sectionRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="group block px-6 sm:px-12 md:px-24 py-40 sm:py-52 cursor-pointer"
+        className="group px-6 sm:px-12 md:px-24 py-40 sm:py-52"
       >
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -52,15 +52,15 @@ export default function ContactSection() {
           <h2 className="text-[3rem] sm:text-[5rem] lg:text-[7rem] font-heading font-light leading-[0.95] tracking-tighter text-[#171717] transition-colors duration-700 group-hover:text-[#4A1942]">
             Let&apos;s work
             <br />
-            together
-            <span className="inline-block ml-4 sm:ml-6 w-10 h-10 sm:w-16 sm:h-16 rounded-full border-2 border-current align-middle opacity-0 translate-x-[-20px] transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full p-2 sm:p-3 -rotate-45">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </span>
+            together.
           </h2>
+
+          <div className="mt-14 flex flex-wrap items-center gap-5">
+            <MagneticButton label="Contact me" href="mailto:hello@annanidumaka.com" />
+            <MagneticButton label="Book a call" href="#" variant="light" />
+          </div>
         </motion.div>
-      </a>
+      </div>
 
       {/* Footer */}
       <div className="px-6 sm:px-12 md:px-24 pb-12 pt-10 border-t border-zinc-200">
