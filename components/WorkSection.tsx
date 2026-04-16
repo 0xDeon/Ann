@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 
 type Category = "All" | "Systems Build" | "Email Campaigns" | "Operations" | "Content" | "Volunteer" | "Videos";
@@ -16,6 +17,7 @@ interface Project {
   tags?: string[];
   link?: string;
   liveSite?: string;
+  bg: string;
 }
 
 const projects: Project[] = [
@@ -29,6 +31,7 @@ const projects: Project[] = [
     image: "/Heritage workflow .png",
     tags: ["Dubsado", "CRM", "Automation"],
     link: "#",
+    bg: "linear-gradient(145deg, #0d0d0d 0%, #1a1018 50%, #111111 100%)",
   },
   {
     title: "Siren Studios — Workshop Email Campaign",
@@ -40,6 +43,7 @@ const projects: Project[] = [
     image: "/Safari (Catalina) - Light.png",
     tags: ["Email Copy", "HTML", "AWeber"],
     link: "#",
+    bg: "linear-gradient(135deg, #f5f0f4 0%, #ffffff 50%, #f8f4f7 100%)",
   },
   {
     title: "The Ops Desk — Welcome Sequence",
@@ -51,6 +55,7 @@ const projects: Project[] = [
     image: "/Safari (Catalina) - Light (1).png",
     tags: ["HubSpot", "Email Sequence", "Copy"],
     link: "#",
+    bg: "linear-gradient(160deg, #111111 0%, #1a1018 40%, #0d0d0d 100%)",
   },
   {
     title: "Heritage Dubsado — Flow Template",
@@ -62,6 +67,7 @@ const projects: Project[] = [
     image: "/Screenshot 2026-03-04 at 12.53.34 am.png",
     tags: ["Dubsado", "Workflows"],
     link: "#",
+    bg: "linear-gradient(135deg, #ffffff 0%, #f5f0f4 50%, #efe8ed 100%)",
   },
   {
     title: "Heritage Proposal System",
@@ -73,6 +79,7 @@ const projects: Project[] = [
     image: "/Screenshot 2026-03-03 at 11.03.33 pm.png",
     tags: ["Dubsado", "Forms", "Proposals"],
     link: "#",
+    bg: "linear-gradient(150deg, #0a0a0a 0%, #141014 50%, #0d0d0d 100%)",
   },
   {
     title: "Ops Desk — HubSpot Email Build",
@@ -84,6 +91,7 @@ const projects: Project[] = [
     image: "/Screenshot 2026-03-03 at 9.27.02 pm.png",
     tags: ["HubSpot", "Email Marketing"],
     link: "#",
+    bg: "linear-gradient(140deg, #f8f4f7 0%, #ffffff 50%, #f5f0f4 100%)",
   },
   {
     title: "Siren Studios — Video Production Ops",
@@ -95,6 +103,7 @@ const projects: Project[] = [
     image: "/Screenshot 2026-03-16 at 1.58.31 am.png",
     tags: ["Trello", "Production Ops"],
     link: "#",
+    bg: "linear-gradient(135deg, #111111 0%, #0d0d0d 40%, #1a1018 100%)",
   },
   {
     title: "Siren Studios — Operations Board",
@@ -106,6 +115,7 @@ const projects: Project[] = [
     image: "/Screenshot 2026-03-16 at 2.00.44 am.png",
     tags: ["Trello", "Project Mgmt"],
     link: "#",
+    bg: "linear-gradient(155deg, #f5f0f4 0%, #ffffff 50%, #f8f4f7 100%)",
   },
   {
     title: "Your Open Rate Is Lying To You",
@@ -117,6 +127,7 @@ const projects: Project[] = [
     image: "/Open rates.png",
     tags: ["LinkedIn", "Email Marketing"],
     link: "#",
+    bg: "linear-gradient(145deg, #0d0d0d 0%, #141014 100%)",
   },
   {
     title: "One Workflow Became Three",
@@ -128,6 +139,7 @@ const projects: Project[] = [
     image: "/three workflows.png",
     tags: ["Dubsado", "LinkedIn"],
     link: "#",
+    bg: "linear-gradient(135deg, #ffffff 0%, #f5f0f4 50%, #efe8ed 100%)",
   },
   {
     title: "7:12am. Couldn't Sleep.",
@@ -139,6 +151,7 @@ const projects: Project[] = [
     image: "/7-12am post.png",
     tags: ["LinkedIn", "Editorial"],
     link: "#",
+    bg: "linear-gradient(160deg, #111111 0%, #1a1018 60%, #0d0d0d 100%)",
   },
   {
     title: "Feed a Child",
@@ -150,6 +163,7 @@ const projects: Project[] = [
     image: "",
     tags: ["Community", "Outreach"],
     link: "#",
+    bg: "linear-gradient(145deg, #f8f4f7 0%, #f0e8ef 30%, #f5f0f4 100%)",
   },
   {
     title: "Project Breakdown",
@@ -161,6 +175,7 @@ const projects: Project[] = [
     image: "https://img.youtube.com/vi/lXcdeRIbA18/maxresdefault.jpg",
     tags: ["Operations", "Tutorial"],
     link: "https://youtu.be/lXcdeRIbA18?si=ZmZa1rvfeSTfn3kH",
+    bg: "linear-gradient(135deg, #0d0d0d 0%, #141014 100%)",
   },
   {
     title: "System Thinking",
@@ -172,6 +187,7 @@ const projects: Project[] = [
     image: "https://img.youtube.com/vi/QoMcUnWa_Co/maxresdefault.jpg",
     tags: ["Systems", "Strategy"],
     link: "https://youtu.be/QoMcUnWa_Co?si=pnjfoISTxhybitOb",
+    bg: "linear-gradient(150deg, #ffffff 0%, #f5f0f4 100%)",
   },
   {
     title: "The Ann Method",
@@ -183,6 +199,7 @@ const projects: Project[] = [
     image: "https://img.youtube.com/vi/PiBYujKfv_Q/maxresdefault.jpg",
     tags: ["Community", "Ops"],
     link: "https://youtu.be/PiBYujKfv_Q?si=PnxexeYQzY_Ykrkd",
+    bg: "linear-gradient(140deg, #0d0d0d 0%, #1a1018 50%, #111111 100%)",
   },
 ];
 
@@ -306,8 +323,19 @@ export default function WorkSection() {
                     className="group flex flex-col"
                   >
                     <div
-                      className={`relative mb-6 ${project.aspect} w-full overflow-hidden rounded-2xl bg-[#F8F8F8] shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:bg-zinc-200`}
-                    />
+                      className={`relative mb-6 ${project.aspect} w-full overflow-hidden rounded-2xl shadow-sm transition-all duration-500 group-hover:shadow-xl`}
+                      style={{ background: project.bg }}
+                    >
+                      {project.image && (
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-contain p-4 drop-shadow-2xl transition-transform duration-700 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                        />
+                      )}
+                    </div>
 
                     <div className="flex flex-col gap-3">
                       <div className="flex items-baseline justify-between transition-transform duration-500 group-hover:translate-x-1">

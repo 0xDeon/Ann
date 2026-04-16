@@ -1,16 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
-import dynamic from "next/dynamic";
-import Navbar from "@/components/Navbar";
-import ContactSection from "@/components/ContactSection";
+import NavShell from "@/components/NavShell";
+import ContactFormSection from "@/components/ContactFormSection";
 import MagneticButton from "@/components/MagneticButton";
 import { motion, AnimatePresence } from "framer-motion";
-
-const LiquidEther = dynamic(() => import("@/components/LiquidEther"), {
-  ssr: false,
-});
 
 const experience = [
   {
@@ -49,6 +43,9 @@ const tools: Tool[] = [
   { name: "HubSpot", slug: "hubspot", color: "FF7A59" },
   { name: "Zapier", slug: "zapier", color: "FF4F00" },
   { name: "Make", slug: "make", color: "6D00CC" },
+  { name: "Google Workspace", slug: "google", color: "4285F4" },
+  { name: "Google Drive", slug: "googledrive", color: "1FA463" },
+  { name: "Google Docs", slug: "googledocs", color: "4285F4" },
   { name: "Trello", slug: "trello", color: "0052CC" },
   { name: "Notion", slug: "notion", color: "000000" },
   { name: "Airtable", slug: "airtable", color: "18BFFF" },
@@ -60,6 +57,15 @@ const tools: Tool[] = [
   { name: "Calendly", slug: "calendly", color: "006BFF" },
   { name: "Mailchimp", slug: "mailchimp", color: "FFE01B" },
   { name: "Stripe", slug: "stripe", color: "635BFF" },
+  { name: "AWeber", slug: "aweber", color: "2262AC" },
+  { name: "Canva", slug: "canva", color: "00C4CC" },
+  { name: "Omnisend", slug: "omnisend", color: "3333FF" },
+  { name: "Shopify", slug: "shopify", color: "7AB55C" },
+  { name: "Eventbrite", slug: "eventbrite", color: "F05537" },
+  { name: "Intercom", slug: "intercom", color: "1F8DED" },
+  { name: "StreamYard", slug: "streamyard", color: "EB3C00" },
+  { name: "YouTube Studio", slug: "youtubestudio", color: "FF0000" },
+  { name: "YouTube", slug: "youtube", color: "FF0000" },
   { name: "Dubsado" },
   { name: "GoHighLevel" },
   { name: "Acuity" },
@@ -241,21 +247,24 @@ function ExperienceItem({
 }
 
 function ToolBadge({ tool }: { tool: Tool }) {
+  const [errored, setErrored] = useState(false);
+  const showLetter = !tool.slug || errored;
   return (
     <div className="flex h-24 flex-shrink-0 items-center gap-5 rounded-2xl border border-zinc-200 bg-white px-7 shadow-sm transition-all duration-500 hover:border-[#4A1942]/40 hover:shadow-md sm:h-28 sm:px-9">
-      {tool.slug ? (
-        <Image
-          src={`https://cdn.simpleicons.org/${tool.slug}/${tool.color ?? "171717"}`}
-          alt={tool.name}
-          width={40}
-          height={40}
-          className="h-10 w-10 flex-shrink-0 object-contain sm:h-12 sm:w-12"
-          unoptimized
-        />
-      ) : (
+      {showLetter ? (
         <span className="grid h-10 w-10 flex-shrink-0 place-items-center rounded-lg bg-[#4A1942] font-mono text-base font-semibold text-[#F9F0F7] sm:h-12 sm:w-12 sm:text-lg">
           {tool.name.charAt(0)}
         </span>
+      ) : (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={`https://cdn.simpleicons.org/${tool.slug}/${tool.color ?? "171717"}`}
+          alt={tool.name}
+          width={48}
+          height={48}
+          onError={() => setErrored(true)}
+          className="h-10 w-10 flex-shrink-0 object-contain sm:h-12 sm:w-12"
+        />
       )}
       <span className="whitespace-nowrap text-xl font-heading font-light text-[#171717] sm:text-2xl">
         {tool.name}
@@ -301,31 +310,11 @@ export default function ResumePage() {
 
   return (
     <main className="relative min-h-screen w-full bg-white selection:bg-[#4A1942] selection:text-white">
-      <Navbar />
-
-      {/* Hero */}
-      <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 sm:px-12">
-        <div className="pointer-events-none absolute inset-0">
-          <LiquidEther
-            colors={["#4A1942", "#B19EEF", "#FF9FFC"]}
-            mouseForce={18}
-            cursorSize={100}
-            iterationsPoisson={12}
-            iterationsViscous={0}
-            resolution={0.35}
-            autoDemo
-            autoSpeed={0.4}
-            autoIntensity={2}
-            takeoverDuration={0.25}
-            autoResumeDelay={2500}
-            autoRampDuration={0.6}
-          />
-        </div>
-
-        <div className="relative z-10 w-full max-w-400 text-center">
-          
-
-          <h1 className="font-heading font-medium tracking-tight text-[#171717] text-[3.75rem] leading-[0.9] sm:text-[7rem] lg:text-[6rem] xl:text-[8rem]">
+      <NavShell>
+        {/* Hero */}
+        <section className="relative flex min-h-[calc(100vh-8rem)] items-center justify-center px-6 pb-20 sm:px-12">
+          <div className="relative z-10 w-full max-w-400 text-center">
+            <h1 className="font-heading font-medium tracking-tight text-[#171717] text-[3.75rem] leading-[0.9] sm:text-[7rem] lg:text-[6rem] xl:text-[8rem]">
             {["I'm Ann.", "I work behind the scenes", "so your plans land."].map((line, i) => (
               <motion.span
                 key={line}
@@ -366,8 +355,9 @@ export default function ResumePage() {
           >
             <MagneticButton label="Download the résumé" />
           </motion.div>
-        </div>
-      </section>
+          </div>
+        </section>
+      </NavShell>
 
       {/* Experience — accordion */}
       <section id="experience" className="px-6 py-28 sm:px-12 md:px-16 lg:px-24">
@@ -490,7 +480,7 @@ export default function ResumePage() {
         </div>
       </section>
 
-      <ContactSection />
+      <ContactFormSection />
     </main>
   );
 }

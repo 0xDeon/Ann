@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Playfair_Display, DM_Sans, Inter, Roboto, Reenie_Bea
 import "./globals.css";
 import Preloader from "@/components/Preloader";
 import SmoothScroll from "@/components/SmoothScroll";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -51,6 +52,7 @@ const bricolage = Bricolage_Grotesque({
   weight: ["300", "400", "700", "800"],
 });
 
+
 export const metadata: Metadata = {
   title: "Ann | Operations Partner",
   description:
@@ -88,6 +90,7 @@ export default function RootLayout({
         <Preloader />
         <SmoothScroll>
           {children}
+          <Footer />
         </SmoothScroll>
       </body>
     </html>

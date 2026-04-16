@@ -1,11 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-
-const LiquidEther = dynamic(() => import("./LiquidEther"), { ssr: false });
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -20,25 +17,8 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative isolate flex min-h-screen w-full flex-col items-start justify-center overflow-hidden px-6 pt-24 pb-12 sm:px-12 md:px-24"
+      className="relative flex min-h-[calc(100vh-8rem)] w-full flex-col items-start justify-center px-6 pt-8 pb-12 sm:px-12 md:px-24"
     >
-      <div className="pointer-events-none absolute inset-0 z-0">
-        <LiquidEther
-          colors={["#4A1942", "#B19EEF", "#FF9FFC"]}
-          mouseForce={18}
-          cursorSize={100}
-          iterationsPoisson={12}
-          iterationsViscous={0}
-          resolution={0.35}
-          autoDemo
-          autoSpeed={0.4}
-          autoIntensity={2}
-          takeoverDuration={0.25}
-          autoResumeDelay={2500}
-          autoRampDuration={0.6}
-        />
-      </div>
-
       <div className="relative z-10 max-w-7xl">
         {/* Greeting + Small Image Identifier */}
         <motion.div
@@ -81,7 +61,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="mb-10 text-5xl  leading-[1.1] tracking-tight text-[#171717] sm:text-6xl md:text-7xl lg:text-8xl font-heading"
         >
-          I help <span>founders</span> turn <span>plans</span> into products that actually <span>scale</span>
+          I help <span>founders</span> turn <span className="text-[#171717]">plans</span> into products that actually <span>scale</span>
         </motion.h1>
 
         {/* Sub-headline / Context */}

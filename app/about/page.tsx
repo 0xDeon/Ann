@@ -4,7 +4,7 @@ import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import BackgroundSection from "@/components/BackgroundSection";
 import InterestsSection from "@/components/InterestsSection";
-import ContactSection from "@/components/ContactSection";
+import ContactFormSection from "@/components/ContactFormSection";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -30,7 +30,7 @@ export default function AboutPage() {
       <Navbar />
 
       {/* Hero Headline Section */}
-      <section className="px-6 pt-32 pb-16 sm:px-12 md:px-24">
+      <section className="px-6 pt-8 pb-16 sm:px-12 md:px-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -100,13 +100,14 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Background Section — Scroll-collapsing accordion, with Interests nested inside */}
-      <BackgroundSection>
-        <InterestsSection />
-      </BackgroundSection>
+      {/* Background Section — Scroll-collapsing accordion */}
+      <BackgroundSection />
+
+      {/* Interests — sits in normal flow after background */}
+      <InterestsSection />
 
       {/* Contact Section */}
-      <ContactSection />
+      <ContactFormSection />
 
       {/* Specialties remains but integrated or removed? I'll keep it as a secondary detail after the 'Background' block */}
       {/* <section className="px-6 py-28 sm:px-12 md:px-24">

@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Moonwalk";
+  src: url("/fonts/MoonWalk.otf") format("opentype"),
+       url("/fonts/MoonWalk.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 @import "tailwindcss";
 
 :root {
@@ -15,6 +23,11 @@
   --font-dm: var(--font-dm-sans);
   --font-handwriting: var(--font-reenie-beanie);
   --font-heading: var(--font-bricolage);
+  --font-moonwalk: "Moonwalk", sans-serif;
+}
+
+.font-moonwalk {
+  font-family: "Moonwalk", sans-serif !important;
 }
 
 @media (prefers-color-scheme: dark) {
