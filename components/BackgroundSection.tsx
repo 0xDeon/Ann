@@ -16,95 +16,114 @@ function useHeaderHeight() {
 const items = [
   {
     stat: "01",
-    label: "A bit about me",
+    label: "Who I am",
     content: (
       <div className="space-y-8">
-        <div className="flex gap-4 mb-4">
-          <span className="text-4xl">🇳🇬</span>
-          <span className="text-4xl">🇬🇧</span>
-        </div>
         <p className="text-[28px] leading-[1.4] text-black font-medium font-heading tracking-tight">
-          An Executive Operations Partner with a growing portfolio spanning CRM
-          builds, workflow automation, and business systems — who crochets, bakes
-          on a Tuesday with no occasion and no apology, has read all 14 Brandon
-          Sanderson books, and will absolutely argue with you about the Trojan
-          War.
+          I’m an Operations Partner with indepth experience. I work with founders, coaches, and
+          creatives who know exactly what they want to build. The vision is
+          clear. The clients are there. I build the structure to support it.
         </p>
+
         <p className="text-[28px] leading-[1.4] text-black font-medium font-heading tracking-tight">
-          Zeus handed a golden apple situation to a mortal man and walked away.
-          The goddess of discord did exactly what her name said. Nobody should
-          have been surprised. My younger sister is obsessed with me and I have
-          done nothing to discourage this.
+          That’s where I come in. I take what’s already working and build the
+          systems behind it. The operations, the admin, the backend that keeps
+          everything running smoothly. So instead of everything living in your
+          head, your business actually works in real life.
         </p>
       </div>
     ),
   },
   {
-    stat: "5+",
-    label: "Years in the industry",
+    stat: "02",
+    label: "What I actually do",
     content: (
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 text-[20px] font-heading font-medium">
-        <div className="space-y-4 text-[#999] font-light tabular-nums">
-          <p>2020 - 2022</p>
-          <p>2022 - 2023</p>
-          <p>2023 - 2024</p>
-          <p>2024 - 2025</p>
-          <p>2025 - Present</p>
+      <div className="space-y-10">
+        <div className="space-y-4">
+          <p className="text-[26px] leading-[1.4] text-black font-medium font-heading tracking-tight">
+            I come into a business and build the infrastructure that makes it
+            run without the founder having to be present for every step. Client
+            onboarding flows, email campaigns, CRM setup, workflow automation,
+            scheduler configuration — the operational backbone.
+          </p>
         </div>
-        <div className="space-y-4 text-black">
-          <p>Startup Lab</p>
-          <p>Growth Circle</p>
-          <p>DevDAO Africa</p>
-          <p>ApeX Ventures</p>
-          <p>Freelance</p>
-        </div>
-        <div className="space-y-4 text-[#999] font-light">
-          <p>Ops Associate</p>
-          <p>Community Manager</p>
-          <p>Head of Community</p>
-          <p>Operations Lead</p>
-          <p>Operations Partner</p>
+        <div className="space-y-4">
+          <p className="text-[26px] leading-[1.4] text-black font-medium font-heading tracking-tight">
+            I stay in the business as an ongoing partner. Inbox management,
+            calendar coordination, task tracking, keeping the founder on course
+            with their own plans. The regular executive support that keeps
+            things moving and nothing falling through.
+          </p>
         </div>
       </div>
     ),
   },
   {
-    stat: "50+",
-    label: "Projects & counting",
+    stat: "03",
+    label: "How I work",
     content: (
       <div className="space-y-8">
         <p className="text-[28px] leading-[1.4] text-black font-medium font-heading tracking-tight">
-          My journey to this point has been defined by one thing — a refusal to
-          be boxed in. Every time someone handed me a label that felt too small,
-          I kept moving. Constantly learning. Constantly adapting. Finding the
-          edges of what I know and pushing past them.
+          James, a photography studio owner, had a workshop planned for months.
+          It had not happened. I came in, kept things within scope, held him
+          accountable to his own plan — and the workshop launched. The email
+          sequence went out. The promotions posted. The thing that lived in his
+          head became a thing that existed in the world.
         </p>
-        <p className="text-[28px] leading-[1.4] text-black font-medium font-heading tracking-tight">
-          I will complain that I do not want to be the chairperson. I will say
-          this with full conviction. And then I will turn around and naturally
-          end up leading the room, coordinating the project, making sure every
-          piece lands exactly where it should.{" "}
-        </p>
+        <div className="space-y-5 pt-2">
+          {[
+            "I keep things within scope — I'll tell you when something is outside what we agreed",
+            "I read between the lines — I see the operational gap before you name it",
+            "I stay until the thing is done — not until the hour is up",
+            "I bring my own tools knowledge — you don't have to explain what Dubsado is",
+          ].map((line) => (
+            <p
+              key={line}
+              className="text-[22px] leading-normal text-[#444] font-heading font-light border-l-2 border-[#4A1942] pl-6"
+            >
+              {line}
+            </p>
+          ))}
+        </div>
       </div>
     ),
   },
   {
-    stat: "10K+",
-    label: "What I'm here for",
+    stat: "04",
+    label: "The tools",
     content: (
       <div className="space-y-8">
         <p className="text-[28px] leading-[1.4] text-black font-medium font-heading tracking-tight">
-          I build for founders who deserve to have the back end of their business
-          match the vision they are building toward. Nothing falling through.
-          Everything running. Someone watching it so they do not have to.
+          I don&apos;t just set up individual platforms — I connect them.
+          Make.com and Zapier let me build automated workflows that pass
+          information between tools so nothing requires manual intervention
+          between steps. You get a backend that runs itself.
         </p>
-        <div className="flex flex-wrap gap-x-8 gap-y-4 pt-4 text-[22px] tracking-wide">
-          <span>CRM Builds</span>
-          <span>Workflow Automation</span>
-          <span>Business Systems</span>
-          <span>Community Ops</span>
-          <span>Founder Support</span>
-          <span>Design Systems</span>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-5 pt-4 text-[20px] font-heading">
+          {[
+            {
+              category: "CRM & Onboarding",
+              tools: "Dubsado · HubSpot · GoHighLevel",
+            },
+            { category: "Scheduling", tools: "Acuity Scheduling" },
+            {
+              category: "Project Management",
+              tools: "ClickUp · Google Workspace",
+            },
+            {
+              category: "Email Marketing",
+              tools: "AWeber · HubSpot · GoHighLevel",
+            },
+            { category: "Workspace & Databases", tools: "Notion · Airtable" },
+            { category: "Automation", tools: "Make.com · Zapier" },
+          ].map(({ category, tools }) => (
+            <div key={category} className="space-y-1">
+              <p className="text-[11px] uppercase tracking-widest text-[#4A1942] font-medium">
+                {category}
+              </p>
+              <p className="text-[18px] text-black font-light">{tools}</p>
+            </div>
+          ))}
         </div>
       </div>
     ),
@@ -156,15 +175,12 @@ export default function BackgroundSection() {
 
                 {/* Body Content */}
                 <div className="px-6 sm:px-12 md:px-24 pt-10 pb-16 sm:pt-24 sm:pb-32">
-                  <div className="max-w-3xl ml-auto">
-                    {item.content}
-                  </div>
+                  <div className="max-w-3xl ml-auto">{item.content}</div>
                 </div>
               </div>
             </div>
           );
         })}
-
       </div>
     </section>
   );

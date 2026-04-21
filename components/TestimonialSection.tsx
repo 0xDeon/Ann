@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useCallback, useState } from "react";
+import { useRef, useCallback, useState, useEffect } from "react";
 import { gsap } from "gsap";
 
 const PIXEL_SIZE = 48;
@@ -80,6 +80,14 @@ function PixelCard({ testimonial }: { testimonial: Testimonial }) {
   const pixelGridRef = useRef<HTMLDivElement>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
   const [showBack, setShowBack] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   const buildPixels = useCallback((grid: HTMLDivElement) => {
     if (grid.children.length > 0) return;
@@ -105,6 +113,7 @@ function PixelCard({ testimonial }: { testimonial: Testimonial }) {
   }, []);
 
   const handleMouseEnter = useCallback(() => {
+    if (isMobile) return;
     const grid = pixelGridRef.current;
     if (!grid) return;
 
@@ -150,6 +159,8 @@ function PixelCard({ testimonial }: { testimonial: Testimonial }) {
     setShowBack(false);
   }, []);
 
+  const revealed = isMobile ? true : showBack;
+
   return (
     <div
       ref={cardRef}
@@ -158,54 +169,50 @@ function PixelCard({ testimonial }: { testimonial: Testimonial }) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Front face — brand/logo or blank for images */}
-      <div
-        className="absolute inset-0 flex items-center justify-center p-8 bg-[#F5F5F5]"
-        style={{ visibility: showBack ? "hidden" : "visible", zIndex: 1 }}
-      >
-        {!testimonial.isImage && (
-          <span className="text-[28px] sm:text-[36px] font-heading font-bold text-[#171717] tracking-tight">
-            {testimonial.brand}
-          </span>
-        )}
-      </div>
+      {/* Front face — brand label (desktop only) */}
+      {!isMobile && (
+        <div
+          className="absolute inset-0 flex items-center justify-center p-8 bg-[#F5F5F5]"
+          style={{ visibility: revealed ? "hidden" : "visible", zIndex: 1 }}
+        >
+          {!testimonial.isImage && (
+            <span className="text-[28px] sm:text-[36px] font-heading font-bold text-[#171717] tracking-tight">
+              {testimonial.brand}
+            </span>
+          )}
+        </div>
+      )}
 
-      {/* Back face — testimonial text OR the image */}
+      {/* Back face — testimonial text */}
       <div
         className="absolute inset-0 flex flex-col justify-between bg-[#F5F5F5] overflow-hidden"
-        style={{ visibility: showBack ? "visible" : "hidden", zIndex: 2 }}
+        style={{ visibility: revealed ? "visible" : "hidden", zIndex: 2 }}
       >
-        {testimonial.isImage ? (
-          <img 
-            src={testimonial.image} 
-            alt="Ann" 
-            className="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-110" 
-          />
-        ) : (
-          <div className="flex flex-col justify-between h-full p-6 sm:p-8">
-            {testimonial.quote && (
-              <p className="text-[15px] sm:text-[17px] leading-[1.5] font-heading font-light tracking-tight text-[#171717]">
-                &ldquo;{testimonial.quote}&rdquo;
-              </p>
-            )}
-            <div className="mt-4">
-              <p className="text-[14px] sm:text-[16px] font-heading font-medium text-[#171717]">
-                {testimonial.author}
-              </p>
-              <p className="text-[12px] sm:text-[13px] font-heading text-[#999]">
-                {testimonial.role}
-              </p>
-            </div>
+        <div className="flex flex-col justify-between h-full p-6 sm:p-8">
+          {testimonial.quote && (
+            <p className="text-[15px] sm:text-[17px] leading-normal font-heading font-light tracking-tight text-[#171717]">
+              &ldquo;{testimonial.quote}&rdquo;
+            </p>
+          )}
+          <div className="mt-4">
+            <p className="text-[14px] sm:text-[16px] font-heading font-medium text-[#171717]">
+              {testimonial.author}
+            </p>
+            <p className="text-[12px] sm:text-[13px] font-heading text-[#999]">
+              {testimonial.role}
+            </p>
           </div>
-        )}
+        </div>
       </div>
 
-      {/* Pixel grid overlay */}
-      <div
-        ref={pixelGridRef}
-        className="absolute inset-0 pointer-events-none"
-        style={{ zIndex: 10 }}
-      />
+      {/* Pixel grid overlay — desktop only */}
+      {!isMobile && (
+        <div
+          ref={pixelGridRef}
+          className="absolute inset-0 pointer-events-none"
+          style={{ zIndex: 10 }}
+        />
+      )}
     </div>
   );
 }
@@ -223,7 +230,9 @@ export default function TestimonialSection() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-zinc-200">
         {testimonials.map((t) => (
-          <PixelCard key={t.brand} testimonial={t} />
+          <div key={t.brand} className={t.isImage ? "hidden sm:block" : ""}>
+            <PixelCard testimonial={t} />
+          </div>
         ))}
       </div>
     </section>

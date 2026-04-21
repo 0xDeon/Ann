@@ -268,7 +268,7 @@ export default function WorkSection() {
           className="mb-20"
         >
           <h2 className="text-5xl font-heading font-medium tracking-tight text-[#171717] sm:text-7xl lg:text-5xl">
-            Selected Work
+            Selected <span className="">Work</span>
           </h2>
           <p className="mt-6 max-w-2xl text-xl font-light text-[#666]">
             Systems builds, email campaigns, and the operational backbones that turn
@@ -276,35 +276,54 @@ export default function WorkSection() {
           </p>
         </motion.div>
 
-        {/* Filter Tabs */}
-        <div className="mb-16 flex flex-wrap items-center gap-x-8 gap-y-4 border-b border-zinc-100 pb-6">
-          {categories.map((cat) => (
-            <button
-              key={cat.label}
-              onClick={() => handleTabClick(cat.label)}
-              className={`relative flex items-baseline gap-2 text-base font-medium tracking-tight transition-all ${
-                active === cat.label
-                  ? "text-[#171717]"
-                  : "text-zinc-400 hover:text-[#171717]"
-              }`}
-            >
-              {cat.label}
-              <span
-                className={`text-xs tabular-nums ${
-                  active === cat.label ? "text-[#4A1942]" : "text-zinc-300"
+        {/* Filter Tabs — pills on mobile, underline on desktop */}
+        <div className="mb-16">
+          {/* Mobile: pill tags */}
+          <div className="flex flex-wrap gap-2 sm:hidden">
+            {categories.map((cat) => (
+              <button
+                key={cat.label}
+                onClick={() => handleTabClick(cat.label)}
+                className={`flex items-center gap-1.5 rounded-full border px-4 py-1.5 text-sm font-medium tracking-tight transition-all ${
+                  active === cat.label
+                    ? "border-[#4A1942] bg-[#4A1942] text-white"
+                    : "border-zinc-200 bg-white text-zinc-500"
                 }`}
               >
-                {cat.count}
-              </span>
-              {active === cat.label && (
-                <motion.div
-                  layoutId="activeTabWork"
-                  className="absolute -bottom-6 left-0 right-0 h-[3px] bg-[#4A1942]"
-                  transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                />
-              )}
-            </button>
-          ))}
+                {cat.label}
+                <span className={`text-[11px] tabular-nums ${active === cat.label ? "text-white/70" : "text-zinc-300"}`}>
+                  {cat.count}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          {/* Desktop: underline tabs */}
+          <div className="hidden sm:flex flex-wrap items-center gap-x-8 gap-y-4 border-b border-zinc-100 pb-6">
+            {categories.map((cat) => (
+              <button
+                key={cat.label}
+                onClick={() => handleTabClick(cat.label)}
+                className={`relative flex items-baseline gap-2 text-base font-medium tracking-tight transition-all ${
+                  active === cat.label
+                    ? "text-[#171717]"
+                    : "text-zinc-400 hover:text-[#171717]"
+                }`}
+              >
+                {cat.label}
+                <span className={`text-xs tabular-nums ${active === cat.label ? "text-[#4A1942]" : "text-zinc-300"}`}>
+                  {cat.count}
+                </span>
+                {active === cat.label && (
+                  <motion.div
+                    layoutId="activeTabWork"
+                    className="absolute -bottom-6 left-0 right-0 h-0.75 bg-[#4A1942]"
+                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                  />
+                )}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Project Grid - Aja Nwachuku Style 3-Column Flex */}

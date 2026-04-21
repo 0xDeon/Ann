@@ -30,28 +30,18 @@ export default function AboutPage() {
       <Navbar />
 
       {/* Hero Headline Section */}
-      <section className="px-6 pt-8 pb-16 sm:px-12 md:px-24">
+      <section className="px-6 pt-8 pb-16 sm:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.215, 0.61, 0.355, 1] }}
-          className="max-w-[90rem]"
         >
-          <h1 className="text-[2.8rem] leading-[1.15] font-heading font-medium tracking-tight text-[#171717] sm:text-6xl lg:text-[4rem]">
+          <h1 className="text-[2.2rem] leading-[1.2] font-heading font-medium tracking-tight text-[#171717] sm:text-5xl lg:text-[3.8rem] lg:leading-[1.15]">
             An operations partner who builds{" "}
-            <span className="inline-flex items-center gap-1">
-              <span className="inline-block w-9 h-9 rounded-lg bg-[#4A1942]/10 p-2 align-middle sm:w-10 sm:h-10">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#4A1942" strokeWidth="2" className="w-full h-full"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
-              </span>
-              {" "}systems that actually run,
-            </span>{" "}
-            crochets things nobody asked for, bakes on a Tuesday with no occasion, has read every{" "}
-            <span className="inline-flex items-center gap-1">
-              <span className="inline-block w-9 h-9 rounded-lg bg-[#4A1942]/10 p-2 align-middle sm:w-10 sm:h-10">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#4A1942" strokeWidth="2" className="w-full h-full"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" /></svg>
-              </span>
-              {" "}Brandon Sanderson book,
-            </span>{" "}
+            <span className="inline-block align-middle text-[0.85em]">⚙️</span>{" "}systems that actually run,
+            crochets things nobody asked for, bakes on a Tuesday with no occasion,
+            has read every{" "}
+            <span className="inline-block align-middle text-[0.85em]">📚</span>{" "}Brandon Sanderson book,
             and has a younger sister who is obsessed with her — she has done nothing to discourage this.
           </h1>
         </motion.div>
@@ -69,7 +59,7 @@ export default function AboutPage() {
             return (
               <div
                 key={i}
-                className="relative flex-shrink-0"
+                className="relative shrink-0"
                 style={{ width: img.w }}
                 onMouseEnter={() => setHoveredIndex(i)}
                 onMouseLeave={() => setHoveredIndex(null)}
@@ -104,7 +94,7 @@ export default function AboutPage() {
       <BackgroundSection />
 
       {/* Interests — sits in normal flow after background */}
-      <InterestsSection />
+      {/* <InterestsSection /> */}
 
       {/* Contact Section */}
       <ContactFormSection />

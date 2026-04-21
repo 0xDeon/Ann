@@ -126,7 +126,13 @@ function SectionTag({
           : "bg-[#4A1942] text-[#F9F0F7]"
       }`}
     >
-      <span className={isDark ? "h-2 w-2 rounded-full bg-[#F9F0F7]/40" : "h-1.5 w-1.5 rounded-full bg-[#F9F0F7]/50"} />
+      <span
+        className={
+          isDark
+            ? "h-2 w-2 rounded-full bg-[#F9F0F7]/40"
+            : "h-1.5 w-1.5 rounded-full bg-[#F9F0F7]/50"
+        }
+      />
       <span>{label}</span>
     </span>
   );
@@ -153,7 +159,9 @@ function ExperienceItem({
     >
       <motion.div
         animate={{
-          backgroundColor: open ? "rgba(74, 25, 66, 0.04)" : "rgba(74, 25, 66, 0)",
+          backgroundColor: open
+            ? "rgba(74, 25, 66, 0.04)"
+            : "rgba(74, 25, 66, 0)",
         }}
         transition={{ duration: 0.5 }}
         className="relative overflow-hidden rounded-3xl"
@@ -162,7 +170,10 @@ function ExperienceItem({
           aria-hidden
           initial={false}
           animate={{ scaleY: open ? 1 : 0 }}
-          transition={{ duration: 0.5, ease: [0.215, 0.61, 0.355, 1] as [number, number, number, number] }}
+          transition={{
+            duration: 0.5,
+            ease: [0.215, 0.61, 0.355, 1] as [number, number, number, number],
+          }}
           className="absolute left-0 top-0 h-full w-0.75 origin-top bg-[#4A1942]"
         />
 
@@ -181,7 +192,9 @@ function ExperienceItem({
               <h3 className="text-2xl font-heading font-medium tracking-tight text-[#171717] transition-colors group-hover:text-[#4A1942] sm:text-4xl">
                 {job.role}
               </h3>
-              <p className="mt-1 text-sm text-[#4A1942] sm:text-base">{job.company}</p>
+              <p className="mt-1 text-sm text-[#4A1942] sm:text-base">
+                {job.company}
+              </p>
             </motion.div>
           </div>
 
@@ -199,7 +212,15 @@ function ExperienceItem({
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
               className="grid h-12 w-12 flex-shrink-0 place-items-center rounded-full border group-hover:border-[#4A1942]"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+              >
                 <path d="M12 5v14M5 12h14" />
               </svg>
             </motion.span>
@@ -212,7 +233,15 @@ function ExperienceItem({
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.5, ease: [0.215, 0.61, 0.355, 1] as [number, number, number, number] }}
+              transition={{
+                duration: 0.5,
+                ease: [0.215, 0.61, 0.355, 1] as [
+                  number,
+                  number,
+                  number,
+                  number,
+                ],
+              }}
               className="overflow-hidden"
             >
               <motion.div
@@ -315,52 +344,68 @@ export default function ResumePage() {
         <section className="relative flex min-h-[calc(100vh-8rem)] items-center justify-center px-6 pb-20 sm:px-12">
           <div className="relative z-10 w-full max-w-400 text-center">
             <h1 className="font-heading font-medium tracking-tight text-[#171717] text-[3.75rem] leading-[0.9] sm:text-[7rem] lg:text-[6rem] xl:text-[8rem]">
-            {["I'm Ann.", "I work behind the scenes", "so your plans land."].map((line, i) => (
-              <motion.span
-                key={line}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.2 + i * 0.12, ease: [0.215, 0.61, 0.355, 1] as [number, number, number, number] }}
-                className="block"
-              >
-                {i === 2 ? (
-                  <>
-                    so your plans <span className="text-[#4A1942]">land.</span>
-                  </>
-                ) : (
-                  line
-                )}
-              </motion.span>
-            ))}
-          </h1>
+              {[
+                "I'm Ann.",
+                "I handle operations that keep your business moving.",
+              ].map((line, i) => (
+                <motion.span
+                  key={line}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.9,
+                    delay: 0.2 + i * 0.12,
+                    ease: [0.215, 0.61, 0.355, 1] as [
+                      number,
+                      number,
+                      number,
+                      number,
+                    ],
+                  }}
+                  className="block"
+                >
+                  {i === 1 ? (
+                    <>
+                      I handle{" "}
+                      <span className="text-[#4A1942]">operations</span> that
+                      keep your business moving.
+                    </>
+                  ) : (
+                    line
+                  )}
+                </motion.span>
+              ))}
+            </h1>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.9, delay: 0.8 }}
-            className="mx-auto mt-12 max-w-4xl text-lg font-light leading-relaxed text-[#555] sm:text-xl"
-          >
-            I&apos;m Ann. I work with founders who know exactly what they want to build and
-            keep getting in their own way. I run the backend — Dubsado, inbox, calendar,
-            campaigns, the pipeline in Trello — so the workshop that&apos;s been planned for
-            months actually launches, the onboarding runs without you touching it, and the
-            email goes out on time in your voice.
-          </motion.p>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.9, delay: 0.8 }}
+              className="mx-auto mt-12 max-w-4xl text-lg font-light leading-relaxed text-[#555] sm:text-xl"
+            >
+              From systems and workflows to launches and day-to-day operations,
+              I support founders by managing the moving parts so launches happen
+              on time, systems stay organized, and your business runs without
+              constant oversight.
+            </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 1 }}
-            className="mt-14 flex flex-col items-center gap-6"
-          >
-            <MagneticButton label="Download the résumé" />
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 1 }}
+              className="mt-14 flex flex-col items-center gap-6"
+            >
+              <MagneticButton label="Download the résumé" />
+            </motion.div>
           </div>
         </section>
       </NavShell>
 
       {/* Experience — accordion */}
-      <section id="experience" className="px-6 py-28 sm:px-12 md:px-16 lg:px-24">
+      <section
+        id="experience"
+        className="px-6 py-28 sm:px-12 md:px-16 lg:px-24"
+      >
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -435,8 +480,12 @@ export default function ResumePage() {
               className="group relative overflow-hidden rounded-3xl border border-[#F9F0F7]/10 bg-[#2C0D28]/40 p-10 transition-colors hover:bg-[#2C0D28]/70"
             >
               <div className="relative z-10">
-                <p className="mb-8 font-mono text-xs text-[#F9F0F7]/40">{p.n}</p>
-                <h3 className="mb-4 text-2xl font-heading font-medium sm:text-3xl">{p.t}</h3>
+                <p className="mb-8 font-mono text-xs text-[#F9F0F7]/40">
+                  {p.n}
+                </p>
+                <h3 className="mb-4 text-2xl font-heading font-medium sm:text-3xl">
+                  {p.t}
+                </h3>
                 <p className="max-w-md text-base font-light leading-relaxed text-[#F9F0F7]/70">
                   {p.b}
                 </p>
@@ -466,7 +515,8 @@ export default function ResumePage() {
             transition={{ duration: 0.8, delay: 0.15 }}
             className="mx-auto mt-6 max-w-xl text-lg font-light text-[#666]"
           >
-            A print-friendly version with everything you just read, plus the boring stuff I left off the page.
+            A print-friendly version with everything you just read, plus the
+            boring stuff I left off the page.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
