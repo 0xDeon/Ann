@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
-
 
 type Category = "All" | "Systems Build" | "Email Campaigns" | "Operations" | "Content" | "Volunteer" | "Videos";
 
@@ -12,11 +10,9 @@ interface Project {
   year: string;
   description: string;
   categories: Category[];
-  aspect: string;
   image: string;
   tags?: string[];
   link?: string;
-  liveSite?: string;
   bg: string;
 }
 
@@ -27,7 +23,6 @@ const projects: Project[] = [
     description:
       "Full Dubsado workspace build for a custom cake studio. Job workflows, canned emails, proposal forms, and contracts — Clara doesn't touch a single thing between inquiry and booking confirmed.",
     categories: ["Systems Build"],
-    aspect: "aspect-square",
     image: "/Heritage workflow .png",
     tags: ["Dubsado", "CRM", "Automation"],
     link: "#",
@@ -39,7 +34,6 @@ const projects: Project[] = [
     description:
       "Two-email sequence for a photography studio launching a lighting workshop. Wrote the copy, coded the HTML, and pushed it live in the studio's voice — the workshop finally launched.",
     categories: ["Email Campaigns"],
-    aspect: "aspect-[4/3]",
     image: "/Safari (Catalina) - Light.png",
     tags: ["Email Copy", "HTML", "AWeber"],
     link: "#",
@@ -51,7 +45,6 @@ const projects: Project[] = [
     description:
       "Three-email welcome sequence built on HubSpot for a new lead magnet. Subject line, preview, body copy and automation — all in the founder's voice, ready to send.",
     categories: ["Email Campaigns"],
-    aspect: "aspect-[10/13]",
     image: "/Safari (Catalina) - Light (1).png",
     tags: ["HubSpot", "Email Sequence", "Copy"],
     link: "#",
@@ -63,7 +56,6 @@ const projects: Project[] = [
     description:
       "The full Enquiry-to-Completion flow template inside Dubsado — six steps, automated proposals, invoicing triggers, and confirmation emails. Built once, runs every inquiry.",
     categories: ["Systems Build"],
-    aspect: "aspect-[16/10]",
     image: "/Screenshot 2026-03-04 at 12.53.34 am.png",
     tags: ["Dubsado", "Workflows"],
     link: "#",
@@ -75,7 +67,6 @@ const projects: Project[] = [
     description:
       "Auto-generated custom cake proposals inside Dubsado — branded forms, smart fields, and package selectors that trigger contracts and invoices on acceptance.",
     categories: ["Systems Build"],
-    aspect: "aspect-[4/3]",
     image: "/Screenshot 2026-03-03 at 11.03.33 pm.png",
     tags: ["Dubsado", "Forms", "Proposals"],
     link: "#",
@@ -87,7 +78,6 @@ const projects: Project[] = [
     description:
       "Designed and shipped the first of a three-email welcome series inside HubSpot — showing range across ESPs and comfort with enterprise tools.",
     categories: ["Email Campaigns"],
-    aspect: "aspect-[4/3]",
     image: "/Screenshot 2026-03-03 at 9.27.02 pm.png",
     tags: ["HubSpot", "Email Marketing"],
     link: "#",
@@ -99,7 +89,6 @@ const projects: Project[] = [
     description:
       "Trello-based video production pipeline for a photography studio — Shot, 1st Draft, 2nd Draft, Posted. Nothing falls through, every reel ships.",
     categories: ["Operations"],
-    aspect: "aspect-[16/10]",
     image: "/Screenshot 2026-03-16 at 1.58.31 am.png",
     tags: ["Trello", "Production Ops"],
     link: "#",
@@ -111,7 +100,6 @@ const projects: Project[] = [
     description:
       "Multi-board Trello system running studio operations — priority tracking, campaign launches, VA task delegation, and weekly Gemini meeting notes.",
     categories: ["Operations"],
-    aspect: "aspect-[16/10]",
     image: "/Screenshot 2026-03-16 at 2.00.44 am.png",
     tags: ["Trello", "Project Mgmt"],
     link: "#",
@@ -123,7 +111,6 @@ const projects: Project[] = [
     description:
       "LinkedIn editorial on why open rates are broken — Apple Mail pre-fetches, corporate scanners, proxy servers — and the metrics that actually tell the story.",
     categories: ["Content"],
-    aspect: "aspect-square",
     image: "/Open rates.png",
     tags: ["LinkedIn", "Email Marketing"],
     link: "#",
@@ -135,7 +122,6 @@ const projects: Project[] = [
     description:
       "LinkedIn breakdown of building a full coaching CRM — what actually happens when you stop assuming and start testing. Onboarding, offboarding, and per-session flows.",
     categories: ["Content"],
-    aspect: "aspect-square",
     image: "/three workflows.png",
     tags: ["Dubsado", "LinkedIn"],
     link: "#",
@@ -147,7 +133,6 @@ const projects: Project[] = [
     description:
       "Short-form LinkedIn content on why people stop opening your emails — value first, promotions later. Part of an ongoing editorial series on email marketing.",
     categories: ["Content"],
-    aspect: "aspect-square",
     image: "/7-12am post.png",
     tags: ["LinkedIn", "Editorial"],
     link: "#",
@@ -159,7 +144,6 @@ const projects: Project[] = [
     description:
       "An NGO initiative created to feed children in under-resourced communities. Coordinated logistics, volunteers, and outreach.",
     categories: ["Volunteer"],
-    aspect: "aspect-[3/2]",
     image: "",
     tags: ["Community", "Outreach"],
     link: "#",
@@ -171,7 +155,6 @@ const projects: Project[] = [
     description:
       "A detailed walkthrough of my operational design process and system architecture for high-growth teams.",
     categories: ["Videos"],
-    aspect: "aspect-video",
     image: "https://img.youtube.com/vi/lXcdeRIbA18/maxresdefault.jpg",
     tags: ["Operations", "Tutorial"],
     link: "https://youtu.be/lXcdeRIbA18?si=ZmZa1rvfeSTfn3kH",
@@ -183,7 +166,6 @@ const projects: Project[] = [
     description:
       "Exploring the fundamentals of building scalable systems for creative businesses and founders.",
     categories: ["Videos"],
-    aspect: "aspect-video",
     image: "https://img.youtube.com/vi/QoMcUnWa_Co/maxresdefault.jpg",
     tags: ["Systems", "Strategy"],
     link: "https://youtu.be/QoMcUnWa_Co?si=pnjfoISTxhybitOb",
@@ -195,7 +177,6 @@ const projects: Project[] = [
     description:
       "My personal approach to managing complex community operational pipelines without friction.",
     categories: ["Videos"],
-    aspect: "aspect-video",
     image: "https://img.youtube.com/vi/PiBYujKfv_Q/maxresdefault.jpg",
     tags: ["Community", "Ops"],
     link: "https://youtu.be/PiBYujKfv_Q?si=PnxexeYQzY_Ykrkd",
@@ -231,29 +212,22 @@ const categories: { label: Category; count: number }[] = [
   },
 ];
 
-const INITIAL_ALL_COUNT = 6;
-
 export default function WorkSection() {
   const [active, setActive] = useState<Category>("All");
-  const [showAll, setShowAll] = useState(false);
+  const [openId, setOpenId] = useState<string | null>(null);
 
-  const baseFiltered =
+  const filtered =
     active === "All"
       ? projects
       : projects.filter((p) => p.categories.includes(active));
 
-  const isAllCollapsed = active === "All" && !showAll && baseFiltered.length > INITIAL_ALL_COUNT;
-  const filtered = isAllCollapsed ? baseFiltered.slice(0, INITIAL_ALL_COUNT) : baseFiltered;
-
-  const col1 = filtered.filter((_, i) => i % 3 === 0);
-  const col2 = filtered.filter((_, i) => i % 3 === 1);
-  const col3 = filtered.filter((_, i) => i % 3 === 2);
-
-  const columnData = [col1, col2, col3];
-
   const handleTabClick = (label: Category) => {
     setActive(label);
-    setShowAll(false);
+    setOpenId(null);
+  };
+
+  const toggle = (title: string) => {
+    setOpenId((prev) => (prev === title ? null : title));
   };
 
   return (
@@ -276,8 +250,8 @@ export default function WorkSection() {
           </p>
         </motion.div>
 
-        {/* Filter Tabs — pills on mobile, underline on desktop */}
-        <div className="mb-16">
+        {/* Filter Tabs */}
+        <div className="mb-12">
           {/* Mobile: pill tags */}
           <div className="flex flex-wrap gap-2 sm:hidden">
             {categories.map((cat) => (
@@ -291,7 +265,11 @@ export default function WorkSection() {
                 }`}
               >
                 {cat.label}
-                <span className={`text-[11px] tabular-nums ${active === cat.label ? "text-white/70" : "text-zinc-300"}`}>
+                <span
+                  className={`text-[11px] tabular-nums ${
+                    active === cat.label ? "text-white/70" : "text-zinc-300"
+                  }`}
+                >
                   {cat.count}
                 </span>
               </button>
@@ -311,7 +289,11 @@ export default function WorkSection() {
                 }`}
               >
                 {cat.label}
-                <span className={`text-xs tabular-nums ${active === cat.label ? "text-[#4A1942]" : "text-zinc-300"}`}>
+                <span
+                  className={`text-xs tabular-nums ${
+                    active === cat.label ? "text-[#4A1942]" : "text-zinc-300"
+                  }`}
+                >
                   {cat.count}
                 </span>
                 {active === cat.label && (
@@ -326,115 +308,136 @@ export default function WorkSection() {
           </div>
         </div>
 
-        {/* Project Grid - Aja Nwachuku Style 3-Column Flex */}
-        <div className="flex flex-col gap-8 md:flex-row">
-          {columnData.map((col, colIndex) => (
-            <div key={colIndex} className="flex flex-1 flex-col gap-12">
-              <AnimatePresence mode="popLayout">
-                {col.map((project) => (
-                  <motion.article
-                    key={project.title}
-                    layout
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.98 }}
-                    transition={{ duration: 0.5, ease: [0.215, 0.61, 0.355, 1] }}
-                    className="group flex flex-col"
+        {/* Accordion List */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            {filtered.map((project, i) => {
+              const isOpen = openId === project.title;
+
+              return (
+                <div key={project.title} className="border-b border-zinc-100 last:border-b-0">
+                  {/* Row */}
+                  <button
+                    onClick={() => toggle(project.title)}
+                    className="group flex w-full items-center gap-4 py-5 text-left transition-colors sm:gap-6"
+                    aria-expanded={isOpen}
                   >
-                    <div
-                      className={`relative mb-6 ${project.aspect} w-full overflow-hidden rounded-2xl shadow-sm transition-all duration-500 group-hover:shadow-xl`}
-                      style={{ background: project.bg }}
+                    {/* Index */}
+                    <span className="w-7 shrink-0 font-mono text-xs tabular-nums text-zinc-300">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+
+                    {/* Title */}
+                    <h3
+                      className={`flex-1 font-heading text-lg font-medium tracking-tight transition-colors sm:text-xl ${
+                        isOpen
+                          ? "text-[#4A1942]"
+                          : "text-[#171717] group-hover:text-[#4A1942]"
+                      }`}
                     >
-                      {project.image && (
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          fill
-                          className="object-contain p-4 drop-shadow-2xl transition-transform duration-700 group-hover:scale-105"
-                          sizes="(max-width: 768px) 100vw, 33vw"
-                        />
-                      )}
+                      {project.title}
+                    </h3>
+
+                    {/* Category — desktop only */}
+                    <span className="hidden shrink-0 text-sm text-zinc-400 sm:block">
+                      {project.categories[0]}
+                    </span>
+
+                    {/* Year */}
+                    <span className="shrink-0 text-sm tabular-nums text-zinc-400">
+                      {project.year}
+                    </span>
+
+                    {/* Toggle icon */}
+                    <div
+                      className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
+                        isOpen
+                          ? "border-[#4A1942] bg-[#4A1942] text-white"
+                          : "border-zinc-200 text-zinc-400 group-hover:border-[#4A1942] group-hover:text-[#4A1942]"
+                      }`}
+                    >
+                      <motion.svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        animate={{ rotate: isOpen ? 45 : 0 }}
+                        transition={{ duration: 0.3, ease: [0.215, 0.61, 0.355, 1] }}
+                      >
+                        <path d="M12 5v14M5 12h14" />
+                      </motion.svg>
                     </div>
+                  </button>
 
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-baseline justify-between transition-transform duration-500 group-hover:translate-x-1">
-                        <h3 className="text-2xl font-heading font-semibold tracking-tight text-[#171717]">
-                          {project.title}
-                        </h3>
-                        <span className="text-sm font-medium tabular-nums text-zinc-400">
-                          {project.year}
-                        </span>
-                      </div>
+                  {/* Expanded panel — text only */}
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.45, ease: [0.215, 0.61, 0.355, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pb-8 pt-2 pl-11">
+                          <p className="mb-5 max-w-2xl text-lg leading-relaxed text-[#555]">
+                            {project.description}
+                          </p>
 
-                      <p className="text-lg leading-relaxed text-[#555] opacity-80 transition-opacity duration-500 group-hover:opacity-100">
-                        {project.description}
-                      </p>
+                          {project.tags && (
+                            <div className="mb-6 flex flex-wrap gap-2">
+                              {project.tags.map((tag) => (
+                                <span
+                                  key={tag}
+                                  className="rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs font-medium text-[#555]"
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          )}
 
-                      {/* Tags */}
-                      {project.tags && (
-                        <div className="flex flex-wrap gap-2 pt-1">
-                          {project.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="rounded-full bg-zinc-50 border border-zinc-100 px-3 py-1 text-xs font-medium text-[#171717] opacity-60"
+                          {project.link && project.link !== "#" && (
+                            <a
+                              href={project.link}
+                              target={
+                                project.link.startsWith("http") ? "_blank" : undefined
+                              }
+                              rel="noopener noreferrer"
+                              className="group/link inline-flex w-fit items-center gap-2 text-sm font-bold uppercase tracking-wider text-[#171717] transition-colors hover:text-[#4A1942]"
                             >
-                              {tag}
-                            </span>
-                          ))}
+                              View Project
+                              <svg
+                                width="13"
+                                height="13"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="3"
+                                className="transition-transform duration-300 group-hover/link:translate-x-1"
+                              >
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                              </svg>
+                            </a>
+                          )}
                         </div>
-                      )}
-
-                      {/* Links */}
-                      <div className="mt-4 flex items-center gap-6">
-                        <a
-                          href="#"
-                          className="group/link flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-[#171717]"
-                        >
-                          Case Study
-                          <svg
-                            className="transition-transform duration-300 group-hover/link:translate-x-1"
-                            width="14"
-                            height="14"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="3"
-                          >
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                          </svg>
-                        </a>
-                      </div>
-                    </div>
-                  </motion.article>
-                ))}
-              </AnimatePresence>
-            </div>
-          ))}
-        </div>
-
-        {active === "All" && baseFiltered.length > INITIAL_ALL_COUNT && (
-          <div className="mt-20 flex justify-center">
-            <button
-              onClick={() => setShowAll((v) => !v)}
-              className="group flex items-center gap-3 rounded-full border border-[#4A1942]/20 bg-white px-8 py-4 text-sm font-bold uppercase tracking-wider text-[#171717] transition-all hover:bg-[#4A1942] hover:text-white"
-            >
-              {showAll ? "Show less" : `View more (${baseFiltered.length - INITIAL_ALL_COUNT})`}
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-                className={`transition-transform duration-300 ${showAll ? "rotate-180" : ""}`}
-              >
-                <path d="M6 9l6 6 6-6" />
-              </svg>
-            </button>
-          </div>
-        )}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
-
   );
 }
