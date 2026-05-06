@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 type Category = "All" | "Systems Build" | "Email Campaigns" | "Operations" | "Content" | "Volunteer" | "Videos";
 
@@ -18,48 +19,15 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Heritage Custom Cakes — Dubsado Build",
-    year: "2026",
-    description:
-      "Full Dubsado workspace build for a custom cake studio. Job workflows, canned emails, proposal forms, and contracts — Clara doesn't touch a single thing between inquiry and booking confirmed.",
-    categories: ["Systems Build"],
-    image: "/Heritage workflow .png",
-    tags: ["Dubsado", "CRM", "Automation"],
-    link: "#",
-    bg: "linear-gradient(145deg, #0d0d0d 0%, #1a1018 50%, #111111 100%)",
-  },
-  {
     title: "Siren Studios — Workshop Email Campaign",
     year: "2026",
     description:
       "Two-email sequence for a photography studio launching a lighting workshop. Wrote the copy, coded the HTML, and pushed it live in the studio's voice — the workshop finally launched.",
     categories: ["Email Campaigns"],
-    image: "/Safari (Catalina) - Light.png",
+    image: "/feed-a-child.jpg",
     tags: ["Email Copy", "HTML", "AWeber"],
     link: "#",
     bg: "linear-gradient(135deg, #f5f0f4 0%, #ffffff 50%, #f8f4f7 100%)",
-  },
-  {
-    title: "The Ops Desk — Welcome Sequence",
-    year: "2026",
-    description:
-      "Three-email welcome sequence built on HubSpot for a new lead magnet. Subject line, preview, body copy and automation — all in the founder's voice, ready to send.",
-    categories: ["Email Campaigns"],
-    image: "/Safari (Catalina) - Light (1).png",
-    tags: ["HubSpot", "Email Sequence", "Copy"],
-    link: "#",
-    bg: "linear-gradient(160deg, #111111 0%, #1a1018 40%, #0d0d0d 100%)",
-  },
-  {
-    title: "Heritage Dubsado — Flow Template",
-    year: "2026",
-    description:
-      "The full Enquiry-to-Completion flow template inside Dubsado — six steps, automated proposals, invoicing triggers, and confirmation emails. Built once, runs every inquiry.",
-    categories: ["Systems Build"],
-    image: "/Screenshot 2026-03-04 at 12.53.34 am.png",
-    tags: ["Dubsado", "Workflows"],
-    link: "#",
-    bg: "linear-gradient(135deg, #ffffff 0%, #f5f0f4 50%, #efe8ed 100%)",
   },
   {
     title: "Heritage Proposal System",
@@ -67,43 +35,10 @@ const projects: Project[] = [
     description:
       "Auto-generated custom cake proposals inside Dubsado — branded forms, smart fields, and package selectors that trigger contracts and invoices on acceptance.",
     categories: ["Systems Build"],
-    image: "/Screenshot 2026-03-03 at 11.03.33 pm.png",
+    image: "/heritage-proposal-system.jpg",
     tags: ["Dubsado", "Forms", "Proposals"],
     link: "#",
     bg: "linear-gradient(150deg, #0a0a0a 0%, #141014 50%, #0d0d0d 100%)",
-  },
-  {
-    title: "Ops Desk — HubSpot Email Build",
-    year: "2026",
-    description:
-      "Designed and shipped the first of a three-email welcome series inside HubSpot — showing range across ESPs and comfort with enterprise tools.",
-    categories: ["Email Campaigns"],
-    image: "/Screenshot 2026-03-03 at 9.27.02 pm.png",
-    tags: ["HubSpot", "Email Marketing"],
-    link: "#",
-    bg: "linear-gradient(140deg, #f8f4f7 0%, #ffffff 50%, #f5f0f4 100%)",
-  },
-  {
-    title: "Siren Studios — Video Production Ops",
-    year: "2026",
-    description:
-      "Trello-based video production pipeline for a photography studio — Shot, 1st Draft, 2nd Draft, Posted. Nothing falls through, every reel ships.",
-    categories: ["Operations"],
-    image: "/Screenshot 2026-03-16 at 1.58.31 am.png",
-    tags: ["Trello", "Production Ops"],
-    link: "#",
-    bg: "linear-gradient(135deg, #111111 0%, #0d0d0d 40%, #1a1018 100%)",
-  },
-  {
-    title: "Siren Studios — Operations Board",
-    year: "2026",
-    description:
-      "Multi-board Trello system running studio operations — priority tracking, campaign launches, VA task delegation, and weekly Gemini meeting notes.",
-    categories: ["Operations"],
-    image: "/Screenshot 2026-03-16 at 2.00.44 am.png",
-    tags: ["Trello", "Project Mgmt"],
-    link: "#",
-    bg: "linear-gradient(155deg, #f5f0f4 0%, #ffffff 50%, #f8f4f7 100%)",
   },
   {
     title: "Your Open Rate Is Lying To You",
@@ -117,15 +52,26 @@ const projects: Project[] = [
     bg: "linear-gradient(145deg, #0d0d0d 0%, #141014 100%)",
   },
   {
-    title: "One Workflow Became Three",
+    title: "Ops Desk — HubSpot Email Build",
     year: "2026",
     description:
-      "LinkedIn breakdown of building a full coaching CRM — what actually happens when you stop assuming and start testing. Onboarding, offboarding, and per-session flows.",
-    categories: ["Content"],
-    image: "/three workflows.png",
-    tags: ["Dubsado", "LinkedIn"],
+      "Designed and shipped the first of a three-email welcome series inside HubSpot — showing range across ESPs and comfort with enterprise tools.",
+    categories: ["Email Campaigns"],
+    image: "/ops-desk-hubspot.jpg",
+    tags: ["HubSpot", "Email Marketing"],
     link: "#",
-    bg: "linear-gradient(135deg, #ffffff 0%, #f5f0f4 50%, #efe8ed 100%)",
+    bg: "linear-gradient(140deg, #f8f4f7 0%, #ffffff 50%, #f5f0f4 100%)",
+  },
+  {
+    title: "Siren Studios — Operations Board",
+    year: "2026",
+    description:
+      "Multi-board Trello system running studio operations — priority tracking, campaign launches, VA task delegation, and weekly Gemini meeting notes.",
+    categories: ["Operations"],
+    image: "/siren-video-production.jpg",
+    tags: ["Trello", "Project Mgmt"],
+    link: "#",
+    bg: "linear-gradient(155deg, #f5f0f4 0%, #ffffff 50%, #f8f4f7 100%)",
   },
   {
     title: "7:12am. Couldn't Sleep.",
@@ -139,15 +85,59 @@ const projects: Project[] = [
     bg: "linear-gradient(160deg, #111111 0%, #1a1018 60%, #0d0d0d 100%)",
   },
   {
-    title: "Feed a Child",
-    year: "2024",
+    title: "Heritage Custom Cakes — Dubsado Build",
+    year: "2026",
     description:
-      "An NGO initiative created to feed children in under-resourced communities. Coordinated logistics, volunteers, and outreach.",
-    categories: ["Volunteer"],
-    image: "",
-    tags: ["Community", "Outreach"],
+      "Full Dubsado workspace build for a custom cake studio. Job workflows, canned emails, proposal forms, and contracts — Clara doesn't touch a single thing between inquiry and booking confirmed.",
+    categories: ["Systems Build"],
+    image: "/heritage-dubsado-build.jpg",
+    tags: ["Dubsado", "CRM", "Automation"],
     link: "#",
-    bg: "linear-gradient(145deg, #f8f4f7 0%, #f0e8ef 30%, #f5f0f4 100%)",
+    bg: "linear-gradient(145deg, #0d0d0d 0%, #1a1018 50%, #111111 100%)",
+  },
+  {
+    title: "The Ops Desk — Welcome Sequence",
+    year: "2026",
+    description:
+      "Three-email welcome sequence built on HubSpot for a new lead magnet. Subject line, preview, body copy and automation — all in the founder's voice, ready to send.",
+    categories: ["Email Campaigns"],
+    image: "/ops-desk-welcome.jpg",
+    tags: ["HubSpot", "Email Sequence", "Copy"],
+    link: "#",
+    bg: "linear-gradient(160deg, #111111 0%, #1a1018 40%, #0d0d0d 100%)",
+  },
+  {
+    title: "One Workflow Became Three",
+    year: "2026",
+    description:
+      "LinkedIn breakdown of building a full coaching CRM — what actually happens when you stop assuming and start testing. Onboarding, offboarding, and per-session flows.",
+    categories: ["Content"],
+    image: "/three workflows.png",
+    tags: ["Dubsado", "LinkedIn"],
+    link: "#",
+    bg: "linear-gradient(135deg, #ffffff 0%, #f5f0f4 50%, #efe8ed 100%)",
+  },
+  {
+    title: "Heritage Dubsado — Flow Template",
+    year: "2026",
+    description:
+      "The full Enquiry-to-Completion flow template inside Dubsado — six steps, automated proposals, invoicing triggers, and confirmation emails. Built once, runs every inquiry.",
+    categories: ["Systems Build"],
+    image: "/heritage-flow-template.jpg",
+    tags: ["Dubsado", "Workflows"],
+    link: "#",
+    bg: "linear-gradient(135deg, #ffffff 0%, #f5f0f4 50%, #efe8ed 100%)",
+  },
+  {
+    title: "Siren Studios — Video Production Ops",
+    year: "2026",
+    description:
+      "Trello-based video production pipeline for a photography studio — Shot, 1st Draft, 2nd Draft, Posted. Nothing falls through, every reel ships.",
+    categories: ["Operations"],
+    image: "/siren-operations-board.jpg",
+    tags: ["Trello", "Production Ops"],
+    link: "#",
+    bg: "linear-gradient(135deg, #111111 0%, #0d0d0d 40%, #1a1018 100%)",
   },
   {
     title: "Project Breakdown",
@@ -159,6 +149,17 @@ const projects: Project[] = [
     tags: ["Operations", "Tutorial"],
     link: "https://youtu.be/lXcdeRIbA18?si=ZmZa1rvfeSTfn3kH",
     bg: "linear-gradient(135deg, #0d0d0d 0%, #141014 100%)",
+  },
+  {
+    title: "Feed a Child",
+    year: "2024",
+    description:
+      "An NGO initiative created to feed children in under-resourced communities. Coordinated logistics, volunteers, and outreach.",
+    categories: ["Volunteer"],
+    image: "/siren-workshop-email.jpg",
+    tags: ["Community", "Outreach"],
+    link: "#",
+    bg: "linear-gradient(145deg, #f8f4f7 0%, #f0e8ef 30%, #f5f0f4 100%)",
   },
   {
     title: "System Thinking",
@@ -186,54 +187,35 @@ const projects: Project[] = [
 
 const categories: { label: Category; count: number }[] = [
   { label: "All", count: projects.length },
-  {
-    label: "Systems Build",
-    count: projects.filter((p) => p.categories.includes("Systems Build")).length,
-  },
-  {
-    label: "Email Campaigns",
-    count: projects.filter((p) => p.categories.includes("Email Campaigns")).length,
-  },
-  {
-    label: "Operations",
-    count: projects.filter((p) => p.categories.includes("Operations")).length,
-  },
-  {
-    label: "Content",
-    count: projects.filter((p) => p.categories.includes("Content")).length,
-  },
-  {
-    label: "Volunteer",
-    count: projects.filter((p) => p.categories.includes("Volunteer")).length,
-  },
-  {
-    label: "Videos",
-    count: projects.filter((p) => p.categories.includes("Videos")).length,
-  },
+  { label: "Systems Build", count: projects.filter((p) => p.categories.includes("Systems Build")).length },
+  { label: "Email Campaigns", count: projects.filter((p) => p.categories.includes("Email Campaigns")).length },
+  { label: "Operations", count: projects.filter((p) => p.categories.includes("Operations")).length },
+  { label: "Content", count: projects.filter((p) => p.categories.includes("Content")).length },
+  { label: "Volunteer", count: projects.filter((p) => p.categories.includes("Volunteer")).length },
+  { label: "Videos", count: projects.filter((p) => p.categories.includes("Videos")).length },
 ];
+
+const INITIAL_COUNT = 6;
 
 export default function WorkSection() {
   const [active, setActive] = useState<Category>("All");
-  const [openId, setOpenId] = useState<string | null>(null);
+  const [showAll, setShowAll] = useState(false);
 
-  const filtered =
-    active === "All"
-      ? projects
-      : projects.filter((p) => p.categories.includes(active));
+  const baseFiltered =
+    active === "All" ? projects : projects.filter((p) => p.categories.includes(active));
+
+  const collapsed = active === "All" && !showAll && baseFiltered.length > INITIAL_COUNT;
+  const filtered = collapsed ? baseFiltered.slice(0, INITIAL_COUNT) : baseFiltered;
 
   const handleTabClick = (label: Category) => {
     setActive(label);
-    setOpenId(null);
-  };
-
-  const toggle = (title: string) => {
-    setOpenId((prev) => (prev === title ? null : title));
+    setShowAll(false);
   };
 
   return (
     <section className="w-full px-6 py-24 sm:px-12 md:px-16 lg:px-24">
       <div className="w-full">
-        {/* Section Header */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -252,7 +234,6 @@ export default function WorkSection() {
 
         {/* Filter Tabs */}
         <div className="mb-12">
-          {/* Mobile: pill tags */}
           <div className="flex flex-wrap gap-2 sm:hidden">
             {categories.map((cat) => (
               <button
@@ -265,35 +246,24 @@ export default function WorkSection() {
                 }`}
               >
                 {cat.label}
-                <span
-                  className={`text-[11px] tabular-nums ${
-                    active === cat.label ? "text-white/70" : "text-zinc-300"
-                  }`}
-                >
+                <span className={`text-[11px] tabular-nums ${active === cat.label ? "text-white/70" : "text-zinc-300"}`}>
                   {cat.count}
                 </span>
               </button>
             ))}
           </div>
 
-          {/* Desktop: underline tabs */}
           <div className="hidden sm:flex flex-wrap items-center gap-x-8 gap-y-4 border-b border-zinc-100 pb-6">
             {categories.map((cat) => (
               <button
                 key={cat.label}
                 onClick={() => handleTabClick(cat.label)}
                 className={`relative flex items-baseline gap-2 text-base font-medium tracking-tight transition-all ${
-                  active === cat.label
-                    ? "text-[#171717]"
-                    : "text-zinc-400 hover:text-[#171717]"
+                  active === cat.label ? "text-[#171717]" : "text-zinc-400 hover:text-[#171717]"
                 }`}
               >
                 {cat.label}
-                <span
-                  className={`text-xs tabular-nums ${
-                    active === cat.label ? "text-[#4A1942]" : "text-zinc-300"
-                  }`}
-                >
+                <span className={`text-xs tabular-nums ${active === cat.label ? "text-[#4A1942]" : "text-zinc-300"}`}>
                   {cat.count}
                 </span>
                 {active === cat.label && (
@@ -308,135 +278,101 @@ export default function WorkSection() {
           </div>
         </div>
 
-        {/* Accordion List */}
+        {/* Grid */}
         <AnimatePresence mode="wait">
           <motion.div
             key={active}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.3, ease: [0.215, 0.61, 0.355, 1] }}
+            className="grid w-full grid-cols-1 gap-x-20 gap-y-16 sm:grid-cols-2 lg:grid-cols-3 max-w-500"
           >
-            {filtered.map((project, i) => {
-              const isOpen = openId === project.title;
+            {filtered.map((project) => (
+              <motion.article
+                key={project.title}
+                layout
+                className="group flex flex-col"
+              >
+                {/* Image — square container, full image visible */}
+                <div className="relative w-full aspect-square overflow-hidden">
+                  {project.image && (
+                    <>
+                      <Image
+                        src={project.image}
+                        alt=""
+                        fill
+                        aria-hidden
+                        className="object-cover scale-110 blur-xl opacity-60"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-contain transition-transform duration-700 group-hover:scale-[1.03]"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    </>
+                  )}
+                </div>
 
-              return (
-                <div key={project.title} className="border-b border-zinc-100 last:border-b-0">
-                  {/* Row */}
-                  <button
-                    onClick={() => toggle(project.title)}
-                    className="group flex w-full items-center gap-4 py-5 text-left transition-colors sm:gap-6"
-                    aria-expanded={isOpen}
-                  >
-                    {/* Index */}
-                    <span className="w-7 shrink-0 font-mono text-xs tabular-nums text-zinc-300">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-
-                    {/* Title */}
-                    <h3
-                      className={`flex-1 font-heading text-lg font-medium tracking-tight transition-colors sm:text-xl ${
-                        isOpen
-                          ? "text-[#4A1942]"
-                          : "text-[#171717] group-hover:text-[#4A1942]"
-                      }`}
-                    >
+                {/* Content */}
+                <div className="mt-5 flex flex-1 flex-col">
+                  <div className="flex items-baseline justify-between gap-4">
+                    <h3 className="font-heading text-xl font-medium tracking-tight text-[#171717]">
                       {project.title}
                     </h3>
-
-                    {/* Category — desktop only */}
-                    <span className="hidden shrink-0 text-sm text-zinc-400 sm:block">
-                      {project.categories[0]}
-                    </span>
-
-                    {/* Year */}
                     <span className="shrink-0 text-sm tabular-nums text-zinc-400">
                       {project.year}
                     </span>
+                  </div>
 
-                    {/* Toggle icon */}
-                    <div
-                      className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
-                        isOpen
-                          ? "border-[#4A1942] bg-[#4A1942] text-white"
-                          : "border-zinc-200 text-zinc-400 group-hover:border-[#4A1942] group-hover:text-[#4A1942]"
-                      }`}
+                  <p className="mt-3 text-base leading-relaxed text-[#666]">
+                    {project.description}
+                  </p>
+
+                  {project.link && project.link !== "#" && (
+                    <a
+                      href={project.link}
+                      target={project.link.startsWith("http") ? "_blank" : undefined}
+                      rel="noopener noreferrer"
+                      className="group/link mt-4 inline-flex w-fit items-center gap-2 text-sm font-medium text-[#171717] transition-colors hover:text-[#4A1942]"
                     >
-                      <motion.svg
-                        width="12"
-                        height="12"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                        animate={{ rotate: isOpen ? 45 : 0 }}
-                        transition={{ duration: 0.3, ease: [0.215, 0.61, 0.355, 1] }}
+                      View Project
+                      <svg
+                        width="13" height="13" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" strokeWidth="2.5"
+                        className="transition-transform duration-300 group-hover/link:translate-x-0.5"
                       >
-                        <path d="M12 5v14M5 12h14" />
-                      </motion.svg>
-                    </div>
-                  </button>
-
-                  {/* Expanded panel — text only */}
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.45, ease: [0.215, 0.61, 0.355, 1] }}
-                        className="overflow-hidden"
-                      >
-                        <div className="pb-8 pt-2 pl-11">
-                          <p className="mb-5 max-w-2xl text-lg leading-relaxed text-[#555]">
-                            {project.description}
-                          </p>
-
-                          {project.tags && (
-                            <div className="mb-6 flex flex-wrap gap-2">
-                              {project.tags.map((tag) => (
-                                <span
-                                  key={tag}
-                                  className="rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs font-medium text-[#555]"
-                                >
-                                  {tag}
-                                </span>
-                              ))}
-                            </div>
-                          )}
-
-                          {project.link && project.link !== "#" && (
-                            <a
-                              href={project.link}
-                              target={
-                                project.link.startsWith("http") ? "_blank" : undefined
-                              }
-                              rel="noopener noreferrer"
-                              className="group/link inline-flex w-fit items-center gap-2 text-sm font-bold uppercase tracking-wider text-[#171717] transition-colors hover:text-[#4A1942]"
-                            >
-                              View Project
-                              <svg
-                                width="13"
-                                height="13"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="3"
-                                className="transition-transform duration-300 group-hover/link:translate-x-1"
-                              >
-                                <path d="M5 12h14M12 5l7 7-7 7" />
-                              </svg>
-                            </a>
-                          )}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  )}
                 </div>
-              );
-            })}
+              </motion.article>
+            ))}
           </motion.div>
         </AnimatePresence>
+
+        {/* View more */}
+        {active === "All" && baseFiltered.length > INITIAL_COUNT && (
+          <div className="mt-16 flex justify-center">
+            <button
+              onClick={() => setShowAll((v) => !v)}
+              className="group flex items-center gap-3 rounded-full border border-[#4A1942]/20 bg-white px-8 py-4 text-sm font-bold uppercase tracking-wider text-[#171717] transition-all hover:bg-[#4A1942] hover:text-white"
+            >
+              {showAll ? "Show less" : `View more (${baseFiltered.length - INITIAL_COUNT})`}
+              <svg
+                width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" strokeWidth="3"
+                className={`transition-transform duration-300 ${showAll ? "rotate-180" : ""}`}
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

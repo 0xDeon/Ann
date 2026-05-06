@@ -2,6 +2,7 @@
 
 import { useRef, useCallback, useState, useEffect } from "react";
 import { gsap } from "gsap";
+import Image from "next/image";
 
 const PIXEL_SIZE = 48;
 
@@ -183,26 +184,36 @@ function PixelCard({ testimonial }: { testimonial: Testimonial }) {
         </div>
       )}
 
-      {/* Back face — testimonial text */}
+      {/* Back face — testimonial text or image */}
       <div
-        className="absolute inset-0 flex flex-col justify-between bg-[#F5F5F5] overflow-hidden"
-        style={{ visibility: revealed ? "visible" : "hidden", zIndex: 2 }}
+        className="absolute inset-0 flex flex-col justify-between overflow-hidden"
+        style={{ visibility: revealed ? "visible" : "hidden", zIndex: 2, backgroundColor: testimonial.isImage ? "#000" : "#F5F5F5" }}
       >
-        <div className="flex flex-col justify-between h-full p-6 sm:p-8">
-          {testimonial.quote && (
-            <p className="text-[15px] sm:text-[17px] leading-normal font-heading font-light tracking-tight text-[#171717]">
-              &ldquo;{testimonial.quote}&rdquo;
-            </p>
-          )}
-          <div className="mt-4">
-            <p className="text-[14px] sm:text-[16px] font-heading font-medium text-[#171717]">
-              {testimonial.author}
-            </p>
-            <p className="text-[12px] sm:text-[13px] font-heading text-[#999]">
-              {testimonial.role}
-            </p>
+        {testimonial.isImage && testimonial.image ? (
+          <Image
+            src={testimonial.image}
+            alt="Ann"
+            fill
+            className="object-cover object-top"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        ) : (
+          <div className="flex flex-col justify-between h-full p-6 sm:p-8">
+            {testimonial.quote && (
+              <p className="text-[15px] sm:text-[17px] leading-normal font-heading font-light tracking-tight text-[#171717]">
+                &ldquo;{testimonial.quote}&rdquo;
+              </p>
+            )}
+            <div className="mt-4">
+              <p className="text-[14px] sm:text-[16px] font-heading font-medium text-[#171717]">
+                {testimonial.author}
+              </p>
+              <p className="text-[12px] sm:text-[13px] font-heading text-[#999]">
+                {testimonial.role}
+              </p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Pixel grid overlay — desktop only */}
