@@ -3,187 +3,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-
-type Category = "All" | "Systems Build" | "Email Campaigns" | "Operations" | "Content" | "Volunteer" | "Videos";
-
-interface Project {
-  title: string;
-  year: string;
-  description: string;
-  categories: Category[];
-  image: string;
-  tags?: string[];
-  link?: string;
-  bg: string;
-}
-
-const projects: Project[] = [
-  {
-    title: "Siren Studios — Workshop Email Campaign",
-    year: "2026",
-    description:
-      "Two-email sequence for a photography studio launching a lighting workshop. Wrote the copy, coded the HTML, and pushed it live in the studio's voice — the workshop finally launched.",
-    categories: ["Email Campaigns"],
-    image: "/feed-a-child.jpg",
-    tags: ["Email Copy", "HTML", "AWeber"],
-    link: "#",
-    bg: "linear-gradient(135deg, #f5f0f4 0%, #ffffff 50%, #f8f4f7 100%)",
-  },
-  {
-    title: "Heritage Proposal System",
-    year: "2026",
-    description:
-      "Auto-generated custom cake proposals inside Dubsado — branded forms, smart fields, and package selectors that trigger contracts and invoices on acceptance.",
-    categories: ["Systems Build"],
-    image: "/heritage-proposal-system.jpg",
-    tags: ["Dubsado", "Forms", "Proposals"],
-    link: "#",
-    bg: "linear-gradient(150deg, #0a0a0a 0%, #141014 50%, #0d0d0d 100%)",
-  },
-  {
-    title: "Your Open Rate Is Lying To You",
-    year: "2026",
-    description:
-      "LinkedIn editorial on why open rates are broken — Apple Mail pre-fetches, corporate scanners, proxy servers — and the metrics that actually tell the story.",
-    categories: ["Content"],
-    image: "/Open rates.png",
-    tags: ["LinkedIn", "Email Marketing"],
-    link: "#",
-    bg: "linear-gradient(145deg, #0d0d0d 0%, #141014 100%)",
-  },
-  {
-    title: "Ops Desk — HubSpot Email Build",
-    year: "2026",
-    description:
-      "Designed and shipped the first of a three-email welcome series inside HubSpot — showing range across ESPs and comfort with enterprise tools.",
-    categories: ["Email Campaigns"],
-    image: "/ops-desk-hubspot.jpg",
-    tags: ["HubSpot", "Email Marketing"],
-    link: "#",
-    bg: "linear-gradient(140deg, #f8f4f7 0%, #ffffff 50%, #f5f0f4 100%)",
-  },
-  {
-    title: "Siren Studios — Operations Board",
-    year: "2026",
-    description:
-      "Multi-board Trello system running studio operations — priority tracking, campaign launches, VA task delegation, and weekly Gemini meeting notes.",
-    categories: ["Operations"],
-    image: "/siren-video-production.jpg",
-    tags: ["Trello", "Project Mgmt"],
-    link: "#",
-    bg: "linear-gradient(155deg, #f5f0f4 0%, #ffffff 50%, #f8f4f7 100%)",
-  },
-  {
-    title: "7:12am. Couldn't Sleep.",
-    year: "2026",
-    description:
-      "Short-form LinkedIn content on why people stop opening your emails — value first, promotions later. Part of an ongoing editorial series on email marketing.",
-    categories: ["Content"],
-    image: "/7-12am post.png",
-    tags: ["LinkedIn", "Editorial"],
-    link: "#",
-    bg: "linear-gradient(160deg, #111111 0%, #1a1018 60%, #0d0d0d 100%)",
-  },
-  {
-    title: "Heritage Custom Cakes — Dubsado Build",
-    year: "2026",
-    description:
-      "Full Dubsado workspace build for a custom cake studio. Job workflows, canned emails, proposal forms, and contracts — Clara doesn't touch a single thing between inquiry and booking confirmed.",
-    categories: ["Systems Build"],
-    image: "/heritage-dubsado-build.jpg",
-    tags: ["Dubsado", "CRM", "Automation"],
-    link: "#",
-    bg: "linear-gradient(145deg, #0d0d0d 0%, #1a1018 50%, #111111 100%)",
-  },
-  {
-    title: "The Ops Desk — Welcome Sequence",
-    year: "2026",
-    description:
-      "Three-email welcome sequence built on HubSpot for a new lead magnet. Subject line, preview, body copy and automation — all in the founder's voice, ready to send.",
-    categories: ["Email Campaigns"],
-    image: "/ops-desk-welcome.jpg",
-    tags: ["HubSpot", "Email Sequence", "Copy"],
-    link: "#",
-    bg: "linear-gradient(160deg, #111111 0%, #1a1018 40%, #0d0d0d 100%)",
-  },
-  {
-    title: "One Workflow Became Three",
-    year: "2026",
-    description:
-      "LinkedIn breakdown of building a full coaching CRM — what actually happens when you stop assuming and start testing. Onboarding, offboarding, and per-session flows.",
-    categories: ["Content"],
-    image: "/three workflows.png",
-    tags: ["Dubsado", "LinkedIn"],
-    link: "#",
-    bg: "linear-gradient(135deg, #ffffff 0%, #f5f0f4 50%, #efe8ed 100%)",
-  },
-  {
-    title: "Heritage Dubsado — Flow Template",
-    year: "2026",
-    description:
-      "The full Enquiry-to-Completion flow template inside Dubsado — six steps, automated proposals, invoicing triggers, and confirmation emails. Built once, runs every inquiry.",
-    categories: ["Systems Build"],
-    image: "/heritage-flow-template.jpg",
-    tags: ["Dubsado", "Workflows"],
-    link: "#",
-    bg: "linear-gradient(135deg, #ffffff 0%, #f5f0f4 50%, #efe8ed 100%)",
-  },
-  {
-    title: "Siren Studios — Video Production Ops",
-    year: "2026",
-    description:
-      "Trello-based video production pipeline for a photography studio — Shot, 1st Draft, 2nd Draft, Posted. Nothing falls through, every reel ships.",
-    categories: ["Operations"],
-    image: "/siren-operations-board.jpg",
-    tags: ["Trello", "Production Ops"],
-    link: "#",
-    bg: "linear-gradient(135deg, #111111 0%, #0d0d0d 40%, #1a1018 100%)",
-  },
-  {
-    title: "Project Breakdown",
-    year: "2024",
-    description:
-      "A detailed walkthrough of my operational design process and system architecture for high-growth teams.",
-    categories: ["Videos"],
-    image: "https://img.youtube.com/vi/lXcdeRIbA18/maxresdefault.jpg",
-    tags: ["Operations", "Tutorial"],
-    link: "https://youtu.be/lXcdeRIbA18?si=ZmZa1rvfeSTfn3kH",
-    bg: "linear-gradient(135deg, #0d0d0d 0%, #141014 100%)",
-  },
-  {
-    title: "Feed a Child",
-    year: "2024",
-    description:
-      "An NGO initiative created to feed children in under-resourced communities. Coordinated logistics, volunteers, and outreach.",
-    categories: ["Volunteer"],
-    image: "/siren-workshop-email.jpg",
-    tags: ["Community", "Outreach"],
-    link: "#",
-    bg: "linear-gradient(145deg, #f8f4f7 0%, #f0e8ef 30%, #f5f0f4 100%)",
-  },
-  {
-    title: "System Thinking",
-    year: "2024",
-    description:
-      "Exploring the fundamentals of building scalable systems for creative businesses and founders.",
-    categories: ["Videos"],
-    image: "https://img.youtube.com/vi/QoMcUnWa_Co/maxresdefault.jpg",
-    tags: ["Systems", "Strategy"],
-    link: "https://youtu.be/QoMcUnWa_Co?si=pnjfoISTxhybitOb",
-    bg: "linear-gradient(150deg, #ffffff 0%, #f5f0f4 100%)",
-  },
-  {
-    title: "The Ann Method",
-    year: "2024",
-    description:
-      "My personal approach to managing complex community operational pipelines without friction.",
-    categories: ["Videos"],
-    image: "https://img.youtube.com/vi/PiBYujKfv_Q/maxresdefault.jpg",
-    tags: ["Community", "Ops"],
-    link: "https://youtu.be/PiBYujKfv_Q?si=PnxexeYQzY_Ykrkd",
-    bg: "linear-gradient(140deg, #0d0d0d 0%, #1a1018 50%, #111111 100%)",
-  },
-];
+import Link from "next/link";
+import { projects, type Category } from "@/lib/projects";
 
 const categories: { label: Category; count: number }[] = [
   { label: "All", count: projects.length },
@@ -213,7 +34,7 @@ export default function WorkSection() {
   };
 
   return (
-    <section className="w-full px-6 py-24 sm:px-12 md:px-16 lg:px-24">
+    <section id="work" className="w-full px-6 py-24 sm:px-12 md:px-16 lg:px-24">
       <div className="w-full">
         {/* Header */}
         <motion.div
@@ -294,35 +115,39 @@ export default function WorkSection() {
                 layout
                 className="group flex flex-col"
               >
-                {/* Image — square container, full image visible */}
-                <div className="relative w-full aspect-square overflow-hidden">
-                  {project.image && (
-                    <>
-                      <Image
-                        src={project.image}
-                        alt=""
-                        fill
-                        aria-hidden
-                        className="object-cover scale-110 blur-xl opacity-60"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-contain transition-transform duration-700 group-hover:scale-[1.03]"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
-                    </>
-                  )}
-                </div>
+                <Link href={`/work/${project.slug}`} className="block">
+                  {/* Image */}
+                  <div className="relative w-full aspect-square overflow-hidden">
+                    {project.image && (
+                      <>
+                        <Image
+                          src={project.image}
+                          alt=""
+                          fill
+                          aria-hidden
+                          className="object-cover scale-110 blur-xl opacity-60"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-contain transition-transform duration-700 group-hover:scale-[1.03]"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                      </>
+                    )}
+                  </div>
+                </Link>
 
                 {/* Content */}
                 <div className="mt-5 flex flex-1 flex-col">
                   <div className="flex items-baseline justify-between gap-4">
-                    <h3 className="font-heading text-xl font-medium tracking-tight text-[#171717]">
-                      {project.title}
-                    </h3>
+                    <Link href={`/work/${project.slug}`}>
+                      <h3 className="font-heading text-xl font-medium tracking-tight text-[#171717] hover:text-[#4A1942] transition-colors">
+                        {project.title}
+                      </h3>
+                    </Link>
                     <span className="shrink-0 text-sm tabular-nums text-zinc-400">
                       {project.year}
                     </span>
@@ -332,23 +157,19 @@ export default function WorkSection() {
                     {project.description}
                   </p>
 
-                  {project.link && project.link !== "#" && (
-                    <a
-                      href={project.link}
-                      target={project.link.startsWith("http") ? "_blank" : undefined}
-                      rel="noopener noreferrer"
-                      className="group/link mt-4 inline-flex w-fit items-center gap-2 text-sm font-medium text-[#171717] transition-colors hover:text-[#4A1942]"
+                  <Link
+                    href={`/work/${project.slug}`}
+                    className="group/link mt-4 inline-flex w-fit items-center gap-2 text-sm font-medium text-[#171717] transition-colors hover:text-[#4A1942]"
+                  >
+                    View project
+                    <svg
+                      width="13" height="13" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" strokeWidth="2.5"
+                      className="transition-transform duration-300 group-hover/link:translate-x-0.5"
                     >
-                      View Project
-                      <svg
-                        width="13" height="13" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" strokeWidth="2.5"
-                        className="transition-transform duration-300 group-hover/link:translate-x-0.5"
-                      >
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                      </svg>
-                    </a>
-                  )}
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </Link>
                 </div>
               </motion.article>
             ))}
